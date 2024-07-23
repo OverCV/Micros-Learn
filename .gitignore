@@ -1,0 +1,15 @@
+# Ignore Assembly Visual Studio temporary files, build results, and
+*.lss
+*.map
+*.obj
+*.tmp
+*.elf
+*.o
+
+# Ignore the files even if they are not in the root directory
+**/*.lss
+**/*.map
+**/*.obj
+**/*.tmp
+**/*.elf
+**/*.o
