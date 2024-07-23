@@ -5,9 +5,9 @@
 
 main:
     ; Código aquí 🤗
-    LDI R16,    0xFF
-    OUT DDRB,   R16
-    LDI R17,    0x01
-    OUT PORTB,  R17
+    LDI R16, 0xFF
+    OUT DDRB, R16
+    LDI R17, 0x01
+    OUT PORTB, R17
 loop:
     rjmp loop
