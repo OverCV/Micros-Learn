@@ -1,3 +1,0 @@
- tablas de incrementar y decrementar los index, eran dos secuencias
- osea se podía hacer con dos tablas dependiendo de un botón muestra
- 1 secuencia o la otra, y otro botón si la secuencia era al derecho o al revés

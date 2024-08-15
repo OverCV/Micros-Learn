@@ -1,5 +1,5 @@
 # Nombre del proyecto
-PROJECT = main
+PROJECT = Count
 
 # Herramientas AVR y opciones
 AVRASM = "C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\avrasm2.exe"
@@ -20,16 +20,12 @@ INCLUDE_PATHS = -I"C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DF
 ASMFLAGS = -fI -o $(TARGET_HEX) -m $(PROJECT).map -l $(TARGET_LSS) -S $(PROJECT).tmp -W+ie $(INCLUDE_PATHS) -im328Pdef.inc -d $(TARGET_OBJ)
 
 # Objetivo predeterminado
-all: $(TARGET_HEX) clean_temp
+all: $(TARGET_HEX)
 
 # Compilación
 $(TARGET_HEX): $(SRC)
 	$(AVRASM) $(ASMFLAGS) $(SRC)
 
-# Limpiar archivos temporales
-clean_temp:
-	del $(TARGET_LSS) $(PROJECT).map $(PROJECT).tmp $(TARGET_OBJ)
-
-# Limpiar todos los archivos generados, incluyendo el .hex
+# Limpiar archivos generados
 clean:
-	del $(TARGET_HEX) $(TARGET_LSS) $(PROJECT).map $(PROJECT).tmp $(TARGET_OBJ)
+	del $(TARGET_LSS) $(PROJECT).map $(PROJECT).tmp $(TARGET_OBJ)

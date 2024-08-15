@@ -1,5 +1,5 @@
 # Nombre del proyecto
-PROJECT = main
+PROJECT = Seqs
 
 # Herramientas AVR y opciones
 AVRASM = "C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\avrasm2.exe"

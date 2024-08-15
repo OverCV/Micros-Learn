@@ -8,16 +8,15 @@ New-Item -ItemType Directory -Force -Path $ProjectName
 
 # Crear el archivo .asm
 $asmContent = @"
-.include "m328Pdef.inc"
-
-.org 0x0000
-    rjmp main
+    .include"m328Pdef.inc"
+    .org(0x0000)
+    RJMP    main
 
 main:
     ; Código aquí 🤗
 
 loop:
-    rjmp loop
+    RJMP    loop
 "@
 
 Set-Content -Path "$ProjectName\$ProjectName.asm" -Value $asmContent
