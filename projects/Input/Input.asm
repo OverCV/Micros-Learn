@@ -1,5 +1,5 @@
     .include"m328Pdef.inc"
-    .org    0x0000
+    .org    (0x0000)
     RJMP    main
 
     ; Detecta las entradas en el puerto B y las replica como salida en un led del puerto D.

@@ -1,6 +1,6 @@
 .include "m328Pdef.inc"
 
-.org 0x0000
+.org (0x0000)
     rjmp main
 
 main:
