@@ -5,12 +5,12 @@
     ; Detecta las entradas en el Pin D y las emite por el Puerto D.
     main:
         LDI     R16,    0x00
-        OUT     DDRD,   R16
+        OUT     DDRD,   R16     ; Entrada
 
         LDI     R16,    0xFF
-        OUT     DDRB,   R16
+        OUT     DDRB,   R16     ; Salida
 
-        OUT     PORTD,  R16
+        OUT     PORTD,  R16     ; PU - Activar
 
     loop:
         IN      R16,    PIND
