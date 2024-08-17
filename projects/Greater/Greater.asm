@@ -10,7 +10,16 @@
 ; Sean iguales -> PORT (B7)
 
 main:
-    ; Código aquí 🤗
+    LDI R16,    0x00
+    OUT DDRD,   R16 ; pd - Entrada
+
+    LDI R16,    0xFF
+    OUT DDRB,   R16
+
+    OUT PORTD,   R16
 
 loop:
+    IN  R16,    PIND
+    
+
     RJMP    loop
