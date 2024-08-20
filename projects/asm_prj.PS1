@@ -9,6 +9,7 @@ New-Item -ItemType Directory -Force -Path $ProjectName
 # Crear el archivo .asm
 $asmContent = @"
     .include"m328Pdef.inc"
+
     .org(0x0000)
     RJMP    main
 
