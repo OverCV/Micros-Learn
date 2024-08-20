@@ -1,12 +1,12 @@
     ; Definiciones para el microcontrolador
     .include"m328Pdef.inc"
 
-    .equLCD_RS = 0                                                                                                        ; Pin RS en PORTB
-    .equLCD_E = 1                                                                                                         ; Pin E en PORTB
-    .equLCD_D4 = 2                                                                                                        ; Pin D4 en PORTB
-    .equLCD_D5 = 3                                                                                                        ; Pin D5 en PORTB
-    .equLCD_D6 = 4                                                                                                        ; Pin D6 en PORTB
-    .equLCD_D7 = 5                                                                                                        ; Pin D7 en PORTB
+    .equLCD_RS = 0                                                                                              ; Pin RS en PORTB
+    .equLCD_E = 1                                                                                               ; Pin E en PORTB
+    .equLCD_D4 = 2                                                                                              ; Pin D4 en PORTB
+    .equLCD_D5 = 3                                                                                              ; Pin D5 en PORTB
+    .equLCD_D6 = 4                                                                                              ; Pin D6 en PORTB
+    .equLCD_D7 = 5                                                                                              ; Pin D7 en PORTB
 
     .org(0x0000)
     rjmp    init_lcd
@@ -14,11 +14,11 @@
     ; Inicialización del LCD
 init_lcd:
     ; Configuración de pines como salida
-    ldi     r16,            (1<<LCD_RS),    |,  (1<<LCD_E), |, (1<<LCD_D4), |, (1<<LCD_D5), |, (1<<LCD_D6), |, (1<<LCD_D7)
+    ldi     r16,            (1<<LCD_RS) | (1<<LCD_E) | (1<<LCD_D4) | (1<<LCD_D5) | (1<<LCD_D6) | (1<<LCD_D7)
     out     DDRB,           r16
 
     ; Espera inicial
-    ldi     r16,            0x33                                                                                            ; Inicialización del LCD en modo 4 bits
+    ldi     r16,            0x33                                                                                ; Inicialización del LCD en modo 4 bits
     rcall   lcd_command
     rcall   lcd_command
     ldi     r16,            0x32
