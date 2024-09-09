@@ -3,7 +3,7 @@ PROJECT = main
 
 # Herramientas AVR y opciones
 AVRASM = "C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\avrasm2.exe"
-MCU = atmega328p
+MCU = atmega2560
 
 # Archivos de salida
 TARGET_HEX = $(PROJECT).hex
@@ -17,7 +17,7 @@ SRC = $(PROJECT).asm
 INCLUDE_PATHS = -I"C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/avrasm/inc" -I"C:/Program Files (x86)/Atmel/Studio/7.0/toolchain/avr8/avrassembler/Include"
 
 # Opciones del ensamblador
-ASMFLAGS = -fI -o $(TARGET_HEX) -m $(PROJECT).map -l $(TARGET_LSS) -S $(PROJECT).tmp -W+ie $(INCLUDE_PATHS) -im328Pdef.inc -d $(TARGET_OBJ)
+ASMFLAGS = -fI -o $(TARGET_HEX) -m $(PROJECT).map -l $(TARGET_LSS) -S $(PROJECT).tmp -W+ie $(INCLUDE_PATHS) -im2560def.inc -d $(TARGET_OBJ)
 
 # Objetivo predeterminado
 all: $(TARGET_HEX) clean_temp

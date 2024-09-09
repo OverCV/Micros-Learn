@@ -22,11 +22,11 @@ main:
     OUT     SPL,    R16
     OUT     SPH,    R17
 
-    LDI     R18,    0x03    ;   0000 0011
-    OUT     EIMSK,  R18     ;   Configurar interrupciones (INT_0, INT_1)
+    LDI     R0,    0x03    ;   0000 0011
+    OUT     EIMSK,  R0     ;   Configurar interrupciones (INT_0, INT_1)
 
-    LDI     R19,    0xFF
-    STS     EICRA,  R19     ; Configura flanco de subida
+    LDI     R1,    0xFF
+    STS     EICRA,  R1     ; Configura flanco de subida
 
     LDI     R20,    0x01
 

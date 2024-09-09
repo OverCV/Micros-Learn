@@ -29,23 +29,23 @@ loop:
 
     ; (-) a <- a-B
     ; (+) a <- A-b
-    MOV     R18,                R16
+    MOV     R0,                R16
 
     SUB     R16,                R17
     BRMI    set_lower_nibble
     BREQ    set_higher_led
 
-    OUT     PORTB,               R18
+    OUT     PORTB,               R0
     RJMP    loop
 
 set_higher_led:
-    LDI     R18,                0x80
+    LDI     R0,                0x80
 
-    OUT     PORTB,               R18
+    OUT     PORTB,               R0
     RJMP    loop
 
 set_lower_nibble:
-    MOV     R18,                R17
+    MOV     R0,                R17
 
-    OUT     PORTB,               R18
+    OUT     PORTB,               R0
     RJMP    loop
