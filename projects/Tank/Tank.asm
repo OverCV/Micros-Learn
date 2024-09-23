@@ -4,7 +4,7 @@
     RJMP    main
 
     ; Se lee el valor del PINC
-    ; Se muestra el tanque según la física
+    ; Se muestra el tanque según la física clásica
 main:
     ; Setear puertos de salida B
     LDI     R16,    0xFF

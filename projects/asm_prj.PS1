@@ -16,6 +16,9 @@ $asmContent = @"
 main:
     ; Código aquí 🤗
 
+reset:
+    ; Inicializar
+
 loop:
     RJMP    loop
 "@
