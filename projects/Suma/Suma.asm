@@ -8,7 +8,7 @@ main:
     LDI     R17,    0x01    ; Leer los datos
 
     STS     0x0100,     R16
-    STS     0x0101,     R17     ; Almacenar en registros
+    STS     0x0101,     R17     ; Almacenar en memoria RAM
 
     LDS     R18,     0x0100
     LDS     R19,     0x0101     ; Leer los registros
