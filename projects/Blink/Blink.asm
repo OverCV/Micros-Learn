@@ -4,19 +4,33 @@
     RJMP    main
 
 main:
-    ; Código aquí 🤗
-    LDI     R16,    0x00
-    OUT     DDRA,   R16     ; PD - Entradas
-
+    ; Configurar puerto de salida
     LDI     R16,    0xFF
-    OUT     DDRF,   R16     ; PU - Salidas
-
-    OUT     PORTA,  R16     ; Activar entradas
+    OUT     DDRC,   R16
 
 loop:
-    IN      R16,    PINA
-    OUT     PORTF,  R16
+    ; Encender los leds
+    LDI     R16,    0xFF
+    OUT     PORTC,  R16
+
+    RCALL   delay
+
+    ; Apagar los leds
+    LDI     R16,    0x00
+    OUT     PORTC,  R16
+
+    RCALL   delay
 
     RJMP    loop
 
-; Tomar dos datos de la memoria de datos, sumalos y almacenar el resultado en la memoria de datos
+/*
+Subrutina de retraso
+decidimos decrementar un contador hasta que llegue a cero,de forma que cuando llegue a cero se decremente y se vaa resetear el contador (puesto no puede ser inferior a 0).
+Aún seguimos calculando los valores por asignar a los contadores de cada ciclo.
+*/
+delay:
+    LDI     R20,    255
+L1:
+    DEC     R20
+    BRNE    L1
+    RET
