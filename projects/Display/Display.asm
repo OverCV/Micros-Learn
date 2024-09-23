@@ -3,7 +3,7 @@
     .org(0x0000)
     RJMP    main
 
-; Se realizará un contador del 0 al 9 (con loop) en un display de 7 segmentos ánodo común, los dígitos se almacenan en Memoria Flash, son leídos y mostrados por el Puerto A.
+; Se realizará un contador del 0 al 9 (con loop) en un display de 7 segmentos ánodo común, los dígitos serán escritos en memoria Flash, leídos y mostrados por el Puerto A.
 
 main:
     ; Configurar el puerto A como salida (para el display de 7 segmentos)

@@ -21,6 +21,11 @@ reset:
 
 loop:
     RJMP    loop
+
+table:
+    ; Tabla de datos
+    .org(0x0100)
+
 "@
 
 Set-Content -Path "$ProjectName\$ProjectName.asm" -Value $asmContent
