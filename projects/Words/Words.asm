@@ -9,6 +9,9 @@ Integrantes:
     .org(0x0000)
     RJMP    main
 
+
+; Programa que compara dos palabras en memoria y enciende los leds si son iguales, de lo contrario los apaga.
+
 main:
     ; Cargar las palabras en memoria
     LDI     R16,    'a'

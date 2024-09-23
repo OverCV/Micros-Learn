@@ -3,6 +3,8 @@
     .org(0x0000)
     RJMP    main
 
+; Programa que escribe valores en memoria RAM, los lee de vuelta y los suma, el resultado es mostrado por el Puerto F.
+
 main:
     LDI     R16,    0x01
     LDI     R17,    0x01    ; Leer los datos

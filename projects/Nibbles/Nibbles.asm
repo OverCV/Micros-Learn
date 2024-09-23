@@ -3,6 +3,8 @@
     .org(0x0000)
     RJMP main
 
+; Programa que manipula los nibbles de la memoria en la posición 200H (enmascaramiento de bits).
+
 main:
     LDI     R16,        0xA5
     STS     0x0200,     R16

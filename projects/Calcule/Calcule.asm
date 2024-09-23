@@ -3,7 +3,8 @@
     .org(0x0000)
     RJMP    main
 
-; Se realizará una calculadora cual operará entradas de datos de 04 bits, el Puerto A será el encargado de recibir los datos de entrada y el Puerto C será el encargado de recibir los datos de salida. Los datos de entrada serán de 04 bits, los cuales serán divididos en dos nibbles, el nibble bajo será el encargado de realizar las operaciones y el nibble alto será el encargado de seleccionar la operación a realizar. Las operaciones a realizar serán: suma (00), resta (01), and (10) y or (11).
+; Se realizará una calculadora cual operará entradas de datos de 04 bits, el Puerto A será el encargado de recibir los datos de entrada y el Puerto C será el encargado de recibir los datos de salida.
+; Los datos de entrada serán de 04 bits, los cuales serán divididos en dos nibbles, el nibble bajo será el encargado de realizar las operaciones y el nibble alto será el encargado de seleccionar la operación a realizar. Las operaciones a realizar serán: suma (00), resta (01), and (10) y or (11).
 main:
     ; Setear direcciones de entrada/salida A
     LDI     R16,    0x3F    ; 0011 1111

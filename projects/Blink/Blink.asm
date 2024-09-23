@@ -3,6 +3,7 @@
     .org(0x0000)
     RJMP    main
 
+; Se busca aprender las subrutinas de retraso, donde usandola puede darse tiempo al usuario para que pueda ver el cambio de los leds.
 main:
     ; Configurar puerto de salida
     LDI     R16,    0xFF
@@ -30,7 +31,10 @@ Aún seguimos calculando los valores por asignar a los contadores de cada ciclo.
 */
 delay:
     LDI     R20,    255
+    LDI     R21,    255
 L1:
     DEC     R20
+    BRNE    L1
+    DEC     R21
     BRNE    L1
     RET

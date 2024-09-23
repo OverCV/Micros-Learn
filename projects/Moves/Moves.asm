@@ -3,6 +3,8 @@
     .org(0x0000)
     RJMP    main
 
+; Programa que hace que según la selección del usuario por el Puerto C con (01) se encienda y apague un led, con (02) se haga un blink, con (03) se haga que un led se mueva de izquierda a derecha y viceversa.
+
 main:
     ; Setear puertos de salida B
     LDI     R17,    0xFF
