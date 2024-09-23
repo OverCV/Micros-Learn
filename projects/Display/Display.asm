@@ -38,7 +38,7 @@ table:
     .dw 0xF9C0, 0xB0A4, 0x9299, 0xF882, 0x9080
 
 delay:
-    ; Subrutina de retraso
+    ; Subrutina de retraso (1 seg)
     LDI     R20,    82
     LDI     R21,    43
     LDI     R22,    255
