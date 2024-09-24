@@ -30,6 +30,6 @@ $(TARGET_HEX): $(SRC)
 clean_temp:
 	del $(TARGET_LSS) $(PROJECT).map $(PROJECT).tmp $(TARGET_OBJ)
 
-# Limpiar todos los archivos generados, incluyendo el .hex
+# Limpiar todos los archivos generados, excluyendo el .hex
 clean:
 	del $(TARGET_HEX) $(TARGET_LSS) $(PROJECT).map $(PROJECT).tmp $(TARGET_OBJ)
