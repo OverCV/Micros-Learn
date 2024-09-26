@@ -1,95 +1,120 @@
+    ; ATMega2560 Light Sequence Control Program
+    ; Este programa controla secuencias de luces basadas en la entrada del usuario
+
     .include"m2560def.inc"
+
+    ; Definición de Registros
+    ; R16   ; Entrada del usuario
+    ; R17   ; Registro temporal
+    ; R18   ; Salida al display
+    ; R19   ; LED izquierdo para secuencia de expansión
+    ; R20   ; LED derecho para secuencia de expansión
+    ; R25   ; Contadores para el bucle de Retraso
+    ; R26
+    ; R27
 
     .org(0x0000)
     RJMP    main
 
-; Programa que hace que según la selección del usuario por el Puerto C con (01) se encienda y apague un led, con (02) se haga un blink, con (03) se haga que un led se mueva de izquierda a derecha y viceversa.
-
 main:
-    ; Setear puertos de salida B
-    LDI     R17,    0xFF
-    OUT     DDRB,   R17
+    ; Configuración de puertos
+    LDI     R17,                    0x00
+    OUT     DDRA,                   R17     ; Puerto A como entrada
+    LDI     R17,                    0xFF
+    OUT     DDRC,                   R17     ; Puerto C como salida
 
-    ; Setear puertos de entrada C
-    LDI     R16,    0x00
-    OUT     DDRC,   R16
-
-    OUT     PORTB,  R16
+    ; Inicialización de variables
+    CLR     R18
+    LDI     R19,                    0x08
+    LDI     R20,                    0x10
 
 loop:
-    IN      R16,    PINC        ; Entrada.
-
-    ; Comparamos si entró 01
-    CPI     R16,    0x01
-    BREQ    blink               ; Branch If Equal
-
-    ; Comparamos si entró 02
-    CPI     R16,    0x02
-    LDI     R19,    0x08
-    LDI     R20,    0x10
-    BREQ    go_out
-
-    ; Comparamos si entró 03
-    CPI     R16,    0x03
-    LDI     R18,    0x80
-    BREQ    go_right
-
+    ; Lectura de entrada y selección de secuencia
+    IN      R16,                    PINA
+    CPI     R16,                    0x01
+    BREQ    blink_sequence
+    CPI     R16,                    0x02
+    BREQ    reset_inout
+    CPI     R16,                    0x03
+    BREQ    shift_sequence
     RJMP    loop
 
-blink:
-    LDI     R18,    0x00
-    OUT     PORTB,  R18
-
-    COM     R18
-    OUT     PORTB,  R18
-
+    ; Secuencia de parpadeo
+blink_sequence:
+    CLR     R18                             ; Resetear estado
+    OUT     PORTC,                  R18
+    RCALL   delay
+    COM     R18                             ; Complementar para parpadeo
+    OUT     PORTC,                  R18
+    RCALL   delay
     RJMP    loop
 
-go_out:
-    CLR     R18             ; Limpiar
-    OR      R18,     R19
-    OR      R18,     R20
+    ; Secuencia de expansión desde el centro
+reset_inout:
+    LDI     R19,                    0x08    ; Resetear a posición central
+    LDI     R20,                    0x10
 
-    OUT     PORTB,  R18
-
-    CPI     R18,     0x81   ; Extremos
-    BREQ    go_in
-
-    LSR     R19
+in_out:
+    MOV     R18,                    R19
+    OR      R18,                    R20
+    OUT     PORTC,                  R18
+    RCALL   delay
+    IN      R16,                    PINA    ; Verificar cambio de entrada
+    CPI     R16,                    0x02
+    BRNE    loop
+    CPI     R18,                    0x81    ; Verificar si llegó a los extremos
+    BREQ    out_in
+    LSR     R19                             ; Expandir hacia afuera
     LSL     R20
+    RJMP    in_out
 
-    RJMP    go_out
-
-go_in:
-    CLR     R18             ; Limpiar
-    OR      R18,     R19
-    OR      R18,     R20
-
-    OUT     PORTB,  R18
-
-    CPI     R18,     0x18   ; Extremos
-    BREQ    loop
-
+out_in:
+    MOV     R18,                    R19
+    OR      R18,                    R20
+    OUT     PORTC,                  R18
+    RCALL   delay
+    IN      R16,                    PINA    ; Verificar cambio de entrada
+    CPI     R16,                    0x02
+    BRNE    loop
+    CPI     R18,                    0x18    ; Verificar si llegó al centro
+    BREQ    reset_inout
+    LSL     R19                             ; Contraer hacia el centro
     LSR     R20
-    LSL     R19
+    RJMP    out_in
 
-    RJMP    go_in
-
-go_right:
-    OUT     PORTB,  R18
+    ; Secuencia de desplazamiento
+shift_sequence:
+    LDI     R18,                    0x80    ; Iniciar en el extremo derecho
+shift_right:
+    OUT     PORTC,                  R18
+    RCALL   delay
+    IN      R16,                    PINA    ; Verificar cambio de entrada
+    CPI     R16,                    0x03
+    BRNE    loop
     LSR     R18
-
-    CPI     R18,    0x01
-    BREQ    go_left
-
-    RJMP    go_right
-
-go_left:
-    OUT     PORTB,  R18
+    BRCC    shift_right                     ; Continuar si no llegó al extremo izquierdo
+shift_left:
+    LDI     R18,                    0x01    ; Reiniciar en el extremo izquierdo
+shift_left_continue:
+    OUT     PORTC,                  R18
+    RCALL   delay
+    IN      R16,                    PINA    ; Verificar cambio de entrada
+    CPI     R16,                    0x03
+    BRNE    loop
     LSL     R18
+    BRCC    shift_left_continue             ; Continuar si no llegó al extremo derecho
+    RJMP    shift_sequence
 
-    CPI     R18,    0x80
-    BREQ    loop
-
-    RJMP    go_left
-
+delay:
+    ; Subrutina de Retraso
+    LDI     R25,                    17
+    LDI     R26,                    60
+    LDI     R27,                    201
+L1:
+    DEC     R27
+    BRNE    L1
+    DEC     R26
+    BRNE    L1
+    DEC     R25
+    BRNE    L1
+    RET
