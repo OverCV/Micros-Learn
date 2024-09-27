@@ -3,16 +3,6 @@
 
     .include"m2560def.inc"
 
-    ; Definición de Registros
-    ; R16   ; Entrada del usuario
-    ; R17   ; Registro temporal
-    ; R18   ; Salida al display
-    ; R19   ; LED izquierdo para secuencia de expansión
-    ; R20   ; LED derecho para secuencia de expansión
-    ; R25   ; Contadores para el bucle de Retraso
-    ; R26
-    ; R27
-
     .org(0x0000)
     RJMP    main
 
@@ -106,10 +96,10 @@ shift_left_continue:
     RJMP    shift_sequence
 
 delay:
-    ; Subrutina de Retraso
-    LDI     R25,                    17
-    LDI     R26,                    60
-    LDI     R27,                    201
+    ; Subrutina de Retraso (1seg)
+    LDI     R25,                    82
+    LDI     R26,                    43
+    LDI     R27,                    0
 L1:
     DEC     R27
     BRNE    L1
@@ -117,4 +107,6 @@ L1:
     BRNE    L1
     DEC     R25
     BRNE    L1
+    LPM
+    NOP
     RET
