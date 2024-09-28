@@ -6,19 +6,17 @@
 ; Se realizará una calculadora cual operará entradas de datos de 04 bits, el Puerto A será el encargado de recibir los datos de entrada y el Puerto C será el encargado de recibir los datos de salida.
 ; Los datos de entrada serán de 04 bits, los cuales serán divididos en dos nibbles, el nibble bajo será el encargado de realizar las operaciones y el nibble alto será el encargado de seleccionar la operación a realizar. Las operaciones a realizar serán: suma (00), resta (01), and (10) y or (11).
 main:
-    ; Setear direcciones de entrada/salida A
-    LDI     R16,    0x3F    ; 0011 1111
+    ; Setear direcciones de entrada A
+    LDI     R16,    0x00
     OUT     DDRA,   R16
 
-    ; Setear direcciones de entrada C
-    LDI     R16,    0x00
+    ; Setear direcciones de entrada/salida C
+    LDI     R16,    0x3F    ; 0011 1111
     OUT     DDRC,   R16
 
-    OUT     PORTA,  R16
-
 loop:
-    IN      R17,    PINC    ; Data bits (4)
-    IN      R19,    PINA    ; Decisors + Outputs
+    IN      R17,    PINA    ; Data bits (4)
+    IN      R19,    PINC    ; Decisors + Outputs
 
     MOV     R18,    R17     ; R18 <- yyyy xxxx
     SWAP    R17             ; R17 <- xxxx yyyy
@@ -40,25 +38,25 @@ loop:
 
 addop:
     ADD     R17,    R18
-    OUT     PORTA,  R17
+    OUT     PORTC,  R17
 
     RJMP    loop
 
 subop:
     SUB     R17,    R18
-    OUT     PORTA,  R17
+    OUT     PORTC,  R17
 
     RJMP    loop
 
 andop:
     AND     R17,    R18
-    OUT     PORTA,  R17
+    OUT     PORTC,  R17
 
     RJMP    loop
 
 orop:
     OR      R17,    R18
-    OUT     PORTA,  R17
+    OUT     PORTC,  R17
 
     RJMP    loop
 

@@ -32,11 +32,6 @@ loop:
 
     RJMP    reset
 
-table:
-    ; Tabla de dígitos en ánodo común
-    .org(0x100)
-    .dw 0xF9C0, 0xB0A4, 0x9299, 0xF882, 0x9080
-
 delay:
     ; Subrutina de retraso (1 seg)
     LDI     R20,    82
@@ -50,3 +45,8 @@ L1:
     DEC     R20
     BRNE    L1
     RET
+
+table:
+    ; Tabla de dígitos en ánodo común
+    .org(0x100)
+    .dw 0xF9C0, 0xB0A4, 0x9299, 0xF882, 0x9080
