@@ -62,7 +62,7 @@ up_1:
 up_0:
     ORI     R18,    0x01
     OR      R18,    R19
-    OUT     PORTC,  R18 
+    OUT     PORTC,  R18
 
     RJMP    loop
 
