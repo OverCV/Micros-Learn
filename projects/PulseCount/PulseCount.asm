@@ -9,36 +9,36 @@
 
 main:
     ; Configurar el puerto A como salida (para el display de 7 segmentos)
-    LDI     R16,        0xFF
-    OUT     DDRA,       R16
+    LDI     R16,    0xFF
+    OUT     DDRA,   R16
 
     ; Habilitamos interrupciones globales
     SEI
 
     ; Habilitar interrupciones (INT_0)
-    LDI     R17,         0x01
-    OUT     EIMSK,      R17
+    LDI     R17,    0x01
+    OUT     EIMSK,  R17
 
     ; Configurar con flanco de subida (Sólo los 3 bits)
-    LDI     R18,        0x03
-    STS     EICRA,      R18
+    LDI     R18,    0x03
+    STS     EICRA,  R18
 
 reset:
     ; Iniciar contador y puntero Z
-    LDI     R17,        0
-    LDI     ZH,         0x01
-    LDI     ZL,         0x00
+    ; LDI     R17,    0
+    LDI     ZH,     0x01
+    LDI     ZL,     0x00
     ; Multiplicamos por 2 para acceder correctamente
     LSL     ZL
     ROL     ZH
 
 loop:
     ; Mostrar el dígito
-    LPM     R16,        Z ; esta es no necesaria
-    OUT     PORTA,      R16
+    LPM     R16,    Z                           ; esta es no necesaria
+    OUT     PORTA,  R16
 
     ; Revisamos si recorrimos todos los dígitos (0 a 9)
-    CPI     R17,        10
+    CPI     R30,    10
     BRNE    loop
 
     RJMP    reset
