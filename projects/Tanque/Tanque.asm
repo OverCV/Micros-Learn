@@ -14,58 +14,64 @@ main:
     LDI     R16,    0xFF
     OUT     DDRC,   R16
 
+
+
 loop:
     LDI     R18,    0x00
     IN      R17,    PINA
 
     ; 0000 1000 -> Bit encendido : Saltamos. Esta apagado, no salta (ejecuta)
     SBRC    R17,    3       ; Skip if Bit Reg is Cleared=0
-    RJMP    up_3
+    RJMP    h3a
 
     SBRC    R17,    2       ; Si está apagado lo salta, está encendido y brinca
-    RJMP    up_2
+    RJMP    h2
 
     SBRC    R17,    1
-    RJMP    up_1
+    RJMP    h1
 
     SBRC    R17,    0       ; Skip Bit Regi. Clear=0
-    RJMP    up_0
+    RJMP    h0
 
-    RJMP    down_0          ; Si lo estamos vamos a todo_bajo
+    RJMP    l0          ; Si lo estamos vamos a todo_bajo
 
-up_3:
+h3a:
+    LDI     R20,    0x00    ; Set Identificador H3A
+
     ORI     R18,    0x8F    ; Séptimo bit -> parpadeo bomba / máximo
     OUT     PORTC,  R18
-    RCALL   delay
-
+    RJMP    delay
+h3b:
+    ; Identificador H3B
     ANDI    R18,    0x7F
     OUT     PORTC,  R18
-    RCALL   delay
-
+    RJMP    delay
+h3c:
+    ; Identificador H3C
     LDI     R19,    0x00
 
     RJMP    loop
 
-up_2:
+h2:
     ORI     R18,    0x07
     OR      R18,    R19
     OUT     PORTC,  R18
     RJMP    loop
 
-up_1:
+h1:
     ORI     R18,    0x03
     OR      R18,    R19
     OUT     PORTC,  R18
     RJMP    loop
 
-up_0:
+h0:
     ORI     R18,    0x01
     OR      R18,    R19
     OUT     PORTC,  R18
 
     RJMP    loop
 
-down_0:
+l0:
     LDI     R19,    0x40
     OR      R18,    R19     ; Mínimo
     OUT     PORTC,  R18
@@ -73,6 +79,7 @@ down_0:
 
 delay:
     ; Subrutina de Retraso (1seg)
+    INC     R20
     LDI     R25,    82
     LDI     R26,    43
     LDI     R27,    0
@@ -85,4 +92,6 @@ L1:
     BRNE    L1
     LPM
     NOP
-    RET
+    CPI     R20,    0x01
+    BREQ    h3b
+    RJMP    h3c
