@@ -43,7 +43,7 @@ loop:
 
     RJMP    reset
 
-rsi_0:
+    :
     INC     R30
     RETI
 
