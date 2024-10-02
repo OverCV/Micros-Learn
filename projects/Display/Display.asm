@@ -23,8 +23,9 @@ loop:
     ; Mostrar el dígito
     LPM     R16,    Z+
     OUT     PORTA,  R16
-    RCALL   delay
+    RJMP    delay
 
+loop_delay:
     ; Revisamos si recorrimos todos los dígitos (0 a 9)
     INC     R17
     CPI     R17,    10
@@ -44,7 +45,7 @@ L1:
     BRNE    L1
     DEC     R20
     BRNE    L1
-    RET
+    RJMP    loop_delay
 
 table:
     ; Tabla de dígitos en ánodo común
