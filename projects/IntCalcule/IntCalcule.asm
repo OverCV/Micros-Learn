@@ -27,7 +27,7 @@ main:
     LDI     R17,    0x03    ;   (0000.0011)
     OUT     EIMSK,  R17
 
-    ; Configurar con flanco de subida (Sólo los 3 bits)
+    ; Configurar con flanco de subida (bits 0, 1 activos)
     LDI     R18,    0x03
     STS     EICRA,  R18
     LDI     R20,    0x00

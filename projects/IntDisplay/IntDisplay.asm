@@ -19,7 +19,7 @@ main:
     LDI     R17,    0x01
     OUT     EIMSK,  R17
 
-    ; Configurar con flanco de subida (Sólo los 3 bits)
+    ; Configurar con flanco de subida (bits 0, 1 activos)
     LDI     R18,    0x03
     STS     EICRA,  R18
 
