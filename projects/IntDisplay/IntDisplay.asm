@@ -25,7 +25,6 @@ main:
 
 reset:
     ; Iniciar contador y puntero Z
-    ; LDI     R17,    0
     LDI     ZH,     0x01
     LDI     ZL,     0x00
     ; Multiplicamos por 2 para acceder correctamente
