@@ -17,6 +17,7 @@ main:
     LDI     R16,    0x00
     OUT     DDRA,   R16
 
+
     ; Salida: Puerto C
     LDI     R16,    0xFF    ; 0011 1111
     OUT     DDRC,   R16
@@ -29,13 +30,12 @@ main:
     OUT     EIMSK,  R17
 
     ; Configurar con flanco de subida (bits 0, 1 activos)
-    LDI     R18,    0x03
+    LDI     R18,    0x01
     STS     EICRA,  R18
     LDI     R20,    0x00
 
 loop:
     IN      R17,    PINA    ; Data bits (4)
-    ; IN      R19,    PINC    ; Decisors + Outputs
     ; Limpiamos R19 para compararlo sus 2 bits más significantes
     ANDI    R19,    0xC0
 

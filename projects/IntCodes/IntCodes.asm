@@ -31,10 +31,10 @@ loop:
     OUT     PORTA,  R16
     RCALL   delay
 
-    SBRS    R16,    7
-    RJMP    loop
-
+    SBRC    R16,    7
     RJMP    reset
+
+    RJMP    loop
 
 set_seq:
     ; read ptr X | Y
