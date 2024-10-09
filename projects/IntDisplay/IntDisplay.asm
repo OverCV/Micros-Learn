@@ -19,7 +19,7 @@ main:
     OUT     EIMSK,  R17
 
     ; Configurar con flanco de subida (bits 0, 1 activos)
-    LDI     R18,    0x03
+    LDI     R18,    0x30
     STS     EICRA,  R18
 
 reset:
