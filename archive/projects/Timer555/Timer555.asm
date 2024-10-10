@@ -6,6 +6,8 @@
     ; Diseño para configurar TIMER0 con oscilador externo, sensible a flancos de subida.
     ; Muestra por Puerto B mediante conteo los eventos ocurridos (por registro TCNT0).
 main:
+    SEI                     ; Inicializar interrupciones
+
     LDI     R16,    0xFF    ; PU - Salida
     OUT     DDRB,   R16
 
@@ -30,3 +32,12 @@ loop:
     ; Tiempo Ciclo Completo `T2 = 0.693(R2)C2 = 0.5 seg`
     ; Tiempo Ciclo Completo `T = T1+T2 = 1.48 seg`
     ; Frecuencia `F = 1/T = 1.68 Hz`
+
+
+    ; Escribiendo : Alto y Bajo
+    ; Leyendo : Bajo y Alto
+
+; Timer como timer para contar segundo, no sube hasta 255.
+; Timer como interrupción para incrementar
+
+; Las señales externas no se preescalan.

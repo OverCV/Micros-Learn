@@ -25,7 +25,6 @@ main:
     LDI     R1,     0x05        ; MAX Pre-Scaler (0b101) clkI/O/1024 (from prescaler)
     OUT     TCCR0B, R1          ; Pre-Scaler selection
 
-    LDI     R20,    0x01        ; Habilita (0b1) interrupciones por desbordamiento
     STS     TIMSK0, R20         ; Timer/Counter Interrupt Mask Register
 
     LDI     R21,    0x00        ; Valor Contador (Cuenta interna del timer)
