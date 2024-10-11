@@ -3,7 +3,7 @@
     .org        (0x0000)
     RJMP    main
 
-    .org        (0x0020)        ; TIMER0 OVF
+    .org        (0x002E)        ; TIMER0 OVF
     RJMP    rsi_0
 
     ; Diseño de programa cual hace cuenta de 8 bits por el puerto B.
@@ -11,16 +11,16 @@
 main:
     SEI                         ; Inicializar interrupciones
 
-    LDI     R16,    0xFF
     LDI     R17,    0x80
-    OUT     DDRD,   R16         ; PU - Salida
+    LDI     R16,    0xFF
+    OUT     DDRL,   R16         ; PU - Salida
 
     ; Inicializar puntero de pila
     OUT     SPH,    R17
     OUT     SPL,    R16
 
     LDI     R0,     0x00        ; Mostrar valor inicial
-    OUT     PORTD,  R0
+    OUT     PORTA,  R0
 
     LDI     R1,     0x05        ; MAX Pre-Scaler (0b101) clkI/O/1024 (from prescaler)
     OUT     TCCR0B, R1          ; Pre-Scaler selection
@@ -37,5 +37,5 @@ loop:
 
 rsi_0:
     INC     R0                  ; Este conteo es distinto al de R21.
-    OUT     PORTD,  R0          ; Cuenta externa (vía led)
+    OUT     PORTA,  R0          ; Cuenta externa (vía led)
     RETI
