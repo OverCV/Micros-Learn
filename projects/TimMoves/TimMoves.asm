@@ -1,41 +1,56 @@
-    .include    "m328Pdef.inc"
+    .include    "m2560def.inc"
 
     .org        (0x0000)
     RJMP    main
 
-    .org        (0x002E)        ; TIMER0 OVF
-    RJMP    rsi_0
+    ; Usar la etiqueta para la interrupción del Timer0 Compare Match A (OC0Aaddr)
+    .org        OC0Aaddr
+    RJMP    isr_t0
 
-    ; Diseño de programa cual hace cuenta de 8 bits por el puerto B.
-    ; Incrementa mediante el interrupción del Timer0 (reloj interno + pre-escalamiento).
 main:
-    SEI                         ; Inicializar interrupciones
+    ; Habilitar interrupciones globales
+    SEI
 
-    LDI     R17,    0x80
-    LDI     R16,    0xFF
-    OUT     DDRL,   R16         ; PU - Salida
+    ; Configurar Puerto A como salida y Puerto D como entrada
+    LDI     R16,            0xFF    ; Puerto A como salida
+    OUT     DDRA,           R16
+    LDI     R16,            0xFC    ; Configurar solo PD0 y PD1 como entradas
+    OUT     DDRD,           R16
 
-    ; Inicializar puntero de pila
-    OUT     SPH,    R17
-    OUT     SPL,    R16
+    ; Configurar Timer0 en modo CTC (Clear Timer on Compare Match)
+    LDI     R16,            0x02    ; WGM01 = 1, modo CTC
+    OUT     TCCR0A,         R16
 
-    LDI     R0,     0x00        ; Mostrar valor inicial
-    OUT     PORTA,  R0
+    ; Establecer el valor máximo en OCR0A (contar hasta 250)
+    LDI     R16,            250
+    OUT     OCR0A,          R16     ; Configurar el valor de comparación en OCR0A
 
-    LDI     R1,     0x05        ; MAX Pre-Scaler (0b101) clkI/O/1024 (from prescaler)
-    OUT     TCCR0B, R1          ; Pre-Scaler selection
+    ; Configurar el prescaler en 1024 (CS02 = 1, CS01 = 0, CS00 = 1)
+    LDI     R16,            0x05    ; Prescaler de 1024
+    OUT     TCCR0B,         R16
 
-    STS     TIMSK0, R20         ; Timer/Counter Interrupt Mask Register
+    ; Habilitar la interrupción de comparación para el Timer0 (OCIE0A)
+    LDI     R16,            0x02    ; Habilitar interrupción de comparación (OCIE0A)
+    STS     TIMSK0,         R16
 
-    LDI     R21,    0x00        ; Valor Contador (Cuenta interna del timer)
-    OUT     TCNT0,  R21         ; Acá almacena la cuenta
+    ; Inicializar el contador de interrupciones
+    LDI     R20,            0       ; Contador de interrupciones
+    LDI     R18,            64      ; 64 interrupciones para contar 1 segundo
 
-    ; R21 cuenta los ciclos del oscilador, de forma que al desbordarse genera interrupción para incremento en contador
+
 
 loop:
-    RJMP    loop
+    OUT     PORTA,          R20     ; Mostrar el valor del contador en el Puerto A
+    RJMP    loop                    ; Loop infinito
 
-rsi_0:
-    INC     R0                  ; Este conteo es distinto al de R21.
-    OUT     PORTA,  R0          ; Cuenta externa (vía led)
-    RETI
+    ; Rutina de interrupción para Timer0 Compare Match A
+isr_t0:
+    DEC     R18                     ; Decrementar el contador de interrupciones
+    BRNE    reti_isr_t0             ; Si no ha llegado a 0, salir de la interrupción
+
+    ; Si se alcanzaron 64 interrupciones, incrementar contador de segundos
+    LDI     R18,            64      ; Reiniciar el contador de interrupciones
+    INC     R20                     ; Incrementar el contador de segundos
+
+reti_isr_t0:
+    RETI                            ; Retornar de la interrupción
