@@ -59,7 +59,6 @@ isr_t0:
     ; LOGIC
     INC     R20                     ; Incrementar el contador de segundos
 
-    LDI     R20,            0x00    ; Reseteo de la pantalla
     CPI     R21,            0x01
     ; mover el valor en la subrutina, acá limpiarlo, allá recuperarlo???
     BREQ    blink
@@ -68,6 +67,7 @@ reti_isr_t0:
     RETI                            ; Retornar de la interrupción
 
 blink:
+    LDI     R20,            0x00    ; Reseteo de la pantalla
     SBRC    R25,            0       ; ..0 -> on
     COM     R20
 
