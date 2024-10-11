@@ -20,11 +20,9 @@ main:
     LDI     R16,    9
     OUT     OCR0A,  R16                                 ; Comparación con OCR0A, reset del contador cuando llegue a 3
 
-    ; Desactivar las interrupciones de desbordamiento
+    ; Inicializar valor del contador en 0
     LDI     R16,    0x00
-    ; TIMSK0 -> Memoria extendida, desactiva las interrupciones
     STS     TIMSK0, R16
-
 
 loop:
     ; Iniciar contador y puntero Z

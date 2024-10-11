@@ -35,7 +35,7 @@ main:
 
     ; Inicializar el contador de interrupciones
     LDI     R20,            0       ; Contador de interrupciones
-    LDI     R18,            64      ; 64 interrupciones para contar 1 segundo
+    LDI     R17,            64      ; 64 interrupciones para contar 1 segundo
 
     ; Inicializar vector de estados
     LDI     R25,            0x00
@@ -50,24 +50,29 @@ loop:
 
     ; Rutina de interrupción para Timer0 Compare Match A
 isr_t0:
-    DEC     R18                     ; Decrementar el contador de interrupciones
-    BRNE    reti_isr_t0             ; Si no ha llegado a 0, salir de la interrupción
+    DEC     R17                     ; Decrementar el contador de interrupciones
+    BRNE    reti_isr_t0             ; Si no es 0 salimos de la interrupción
 
     ; Si se alcanzaron 64 interrupciones, incrementar contador de segundos
-    LDI     R18,            64      ; Reiniciar el contador de interrupciones
+    LDI     R17,            64      ; Reiniciar el contador de interrupciones
 
     ; LOGIC
-    INC     R20                     ; Incrementar el contador de segundos
-
-    CPI     R21,            0x01
     ; mover el valor en la subrutina, acá limpiarlo, allá recuperarlo???
+    CPI     R21,            0x01
     BREQ    blink
+    CPI     R21,            0x02
+    BREQ    blink
+    CPI     R21,            0x03
+    BREQ    blink
+
+    ; Else count
+    INC     R20                     ; Incrementar el contador de segundos
 
 reti_isr_t0:
     RETI                            ; Retornar de la interrupción
 
 blink:
-    LDI     R20,            0x00    ; Reseteo de la pantalla
+    LDI     R20,            0xFF    ; Reseteo de la pantalla
     SBRC    R25,            0       ; ..0 -> on
     COM     R20
 
@@ -78,13 +83,33 @@ blink:
     RJMP    reti_isr_t0
 
 
+left:
+    
+    RJMP    reti_isr_t0
+
+
+right:
+    RJMP    reti_isr_t0
+
+
+collapse:
+    RJMP    reti_isr_t0
+
+
+expand:
+    RJMP    reti_isr_t0
+
+
 
     /*
     ; R25: 0000 0000
 
     ; b0: Blink
-    ; R25.0 = on, R25.1 = off
+    ; b0.0 = on, b0.1 = off
 
-    ; b1: 
+    ; b1,2: Left <-> Right
+    ; b1.0 = ->, b1.1 = <-
+    ; b1.0 = mantain, b1.1 = change
 
     */
+
