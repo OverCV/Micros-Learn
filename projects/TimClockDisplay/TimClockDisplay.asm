@@ -47,7 +47,6 @@ reset:
     ROL     ZH
 
 loop:
-    ; LDI     R20,            0x00
     IN      R21,            PIND
 
     LPM     R20,            Z
