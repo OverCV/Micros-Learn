@@ -5,7 +5,7 @@
 
 main:
     ; Configurar el Puerto A como salida
-    LDI     R16,    0xFF                                ; Establecer todas las líneas del Puerto A como salidas
+    LDI     R16,    0xFF
     OUT     DDRA,   R16
 
     ; Configurar el Timer en modo CTC (Clear Timer on Compare Match)
@@ -25,11 +25,11 @@ main:
     STS     TIMSK0, R16
 
 loop:
-    ; Iniciar contador y puntero Z
     ; Multiplicamos por 2 para acceder correctamente
     LDI     ZH,     HIGH(table * 2)
-    LDI     ZL,     LOW(table * 2)
+    LDI     ZL,     LOW (table * 2)
 
+    ; Iniciar contador y puntero Z
     ; LSL     ZL
     ; ROL     ZH, 60
 

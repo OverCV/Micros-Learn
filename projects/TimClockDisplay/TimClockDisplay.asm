@@ -55,8 +55,9 @@ loop:
     BREQ    reset
 
     ANDI    R21,            0x03
-    OUT     PORTA,          R20                         ; Mostrar el valor del contador en el Puerto A
-    RJMP    loop                                        ; Loop infinito
+    OUT     PORTA,          R20
+
+    RJMP    loop
 
 
     ; Rutina de interrupción para Timer0 Compare Match A
@@ -67,8 +68,8 @@ isr_t0:
     ; Si se alcanzaron 64 interrupciones, incrementar contador de segundos
     LDI     R17,            64                          ; Reiniciar el contador de interrupciones
 
-    ; LOGIC
-    INC     ZL                                          ; Incrementar el contador de segundos
+    ; Incrementar el contador de segundos
+    INC     ZL
 
 
 reti_isr_t0:
