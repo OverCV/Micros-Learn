@@ -56,60 +56,10 @@ isr_t0:
     ; Si se alcanzaron 64 interrupciones, incrementar contador de segundos
     LDI     R17,            64      ; Reiniciar el contador de interrupciones
 
-    ; LOGIC
-    ; mover el valor en la subrutina, acá limpiarlo, allá recuperarlo???
-    CPI     R21,            0x01
-    BREQ    blink
-    CPI     R21,            0x02
-    BREQ    blink
-    CPI     R21,            0x03
-    BREQ    blink
+    ; LOGIC HERE JULI!
 
     ; Else count
     INC     R20                     ; Incrementar el contador de segundos
 
 reti_isr_t0:
     RETI                            ; Retornar de la interrupción
-
-blink:
-    LDI     R20,            0xFF    ; Reseteo de la pantalla
-    SBRC    R25,            0       ; ..0 -> on
-    COM     R20
-
-    ; XOR b0R23
-    LDI     R19,            0x01
-    EOR     R25,            R19
-
-    RJMP    reti_isr_t0
-
-
-left:
-
-    RJMP    reti_isr_t0
-
-
-right:
-    RJMP    reti_isr_t0
-
-
-collapse:
-    RJMP    reti_isr_t0
-
-
-expand:
-    RJMP    reti_isr_t0
-
-
-
-    /*
-    ; R25: 0000 0000
-
-    ; b0: Blink
-    ; b0.0 = on, b0.1 = off
-
-    ; b1,2: Left <-> Right
-    ; b1.0 = ->, b1.1 = <-
-    ; b1.0 = mantain, b1.1 = change
-
-    */
-

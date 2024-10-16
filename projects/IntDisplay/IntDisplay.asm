@@ -3,6 +3,12 @@
     .org(0x0000)
     RJMP    main
 
+    .org(0x0002)
+    RJMP    rsi_2
+
+    .org(0x0004)
+    RJMP    rsi_2
+
     .org(0x0006)
     RJMP    rsi_2
 
@@ -19,7 +25,7 @@ main:
     OUT     EIMSK,  R17
 
     ; Configurar con flanco de subida (bits 0, 1 activos)
-    LDI     R18,    0x30
+    LDI     R18,    0xFF
     STS     EICRA,  R18
 
 reset:

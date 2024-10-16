@@ -22,9 +22,9 @@ reset:
 loop:
     RJMP    loop
 
+.org(0x0100)
 table:
     ; Tabla de datos
-    .org(0x0100)
 
 "@
 
