@@ -40,6 +40,19 @@ main:
     ; Inicializar vector de estados
     LDI     R25,        0x00
 
+
+/*
+; R25: 0000 0000
+
+; b0: Blink
+; b0.0 = on, b0.1 = off
+
+; b1,2: Left <-> Right
+; b1.0 = ->, b1.1 = <-
+; b1.0 = mantain, b1.1 = change
+*/
+
+
 loop:
     IN      R21,        PIND
     ANDI    R21,        0x03
@@ -101,16 +114,4 @@ expand:
     RJMP    reti_t0
 
 
-
-    /*
-    ; R25: 0000 0000
-
-    ; b0: Blink
-    ; b0.0 = on, b0.1 = off
-
-    ; b1,2: Left <-> Right
-    ; b1.0 = ->, b1.1 = <-
-    ; b1.0 = mantain, b1.1 = change
-
-    */
 

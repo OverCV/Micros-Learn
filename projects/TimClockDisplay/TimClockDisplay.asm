@@ -3,7 +3,7 @@
     .org        (0x0000)
     RJMP    main
 
-    ; Usar la etiqueta para la interrupción del Timer0 Compare Match A (OC0Aaddr)
+    ; Etiqueta para interrupción del Timer0 Compare Match A (0x002A)
     .org        OC0Aaddr
     RJMP    isr_t0
 
@@ -59,7 +59,7 @@ loop:
 
     RJMP    loop
 
-
+; decremtar el registro y la comparacion es por fuera
     ; Rutina de interrupción para Timer0 Compare Match A
 isr_t0:
     DEC     R17                                         ; Decrementar el contador de interrupciones
@@ -71,12 +71,11 @@ isr_t0:
     ; Incrementar el contador de segundos
     INC     ZL
 
-
 reti_isr_t0:
-    RETI                                                ; Retornar de la interrupción
+    RETI
 
 
 table:
-    .org        (0x0060)
     ; Tabla de dígitos 0-9 en ánodo común
-    .dw         0x7940, 0x3024, 0x1219, 0x7802, 0x1000
+    .org        (0x0060)
+    .dw         (0x7940), 0x3024, 0x1219, 0x7802, 0x1000

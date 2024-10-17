@@ -4,9 +4,11 @@
     RJMP    main
 
     .org(0x0002)
+    ; .org(0x0006)
     RJMP    rsi_0
 
     .org(0x0004)
+    ; .org(0x0008)
     RJMP    rsi_1
 
     ; Se realizará una calculadora cual operará entradas de datos de 04 bits, el Puerto A será el encargado de recibir los datos de entrada y el Puerto C será el encargado de mostrar la operación entre los datos en A como salida.
@@ -26,8 +28,9 @@ main:
     SEI
 
     ; Habilitar interrupciones (INT_0, INT_1)
-    LDI     R17,    0x03    ;   (0000.0011)
+    LDI     R17,    0x33    ;   (0000.0011)
     OUT     EIMSK,  R17
+    ; STS
 
     ; Configurar con flanco de subida (bits 0, 1 activos)
     LDI     R18,    0x01

@@ -12,6 +12,8 @@
     .org(0x0006)
     RJMP    rsi_2
 
+    .org(RESETaddr)
+
 main:
     ; Configurar el puerto A como salida (para el display de 7 segmentos)
     LDI     R16,    0xFF
