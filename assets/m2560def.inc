@@ -12,10 +12,10 @@
 ;* Target MCU        : ATmega2560
 ;*
 ;* DESCRIPTION
-;* When including this file in the assembly program file, all I/O register 
+;* When including this file in the assembly program file, all I/O register
 ;* names and I/O register bit names appearing in the data book can be used.
-;* In addition, the six registers forming the three data pointers X, Y and 
-;* Z have been assigned names XL - ZH. Highest RAM address for Internal 
+;* In addition, the six registers forming the three data pointers X, Y and
+;* Z have been assigned names XL - ZH. Highest RAM address for Internal
 ;* SRAM is also defined
 ;*
 ;* The Register names are represented by their hexadecimal address.
@@ -64,7 +64,7 @@
 .equ	PCI0addr	= 0x0012	; Pin Change Interrupt Request 0
 .equ	PCI1addr	= 0x0014	; Pin Change Interrupt Request 1
 .equ	PCI2addr	= 0x0016	; Pin Change Interrupt Request 2
-.equ	WDTaddr	= 0x0018	; Watchdog Time-out Interrupt
+.equ	WDTaddr 	= 0x0018	; Watchdog Time-out Interrupt
 .equ	OC2Aaddr	= 0x001a	; Timer/Counter2 Compare Match A
 .equ	OC2Baddr	= 0x001c	; Timer/Counter2 Compare Match B
 .equ	OVF2addr	= 0x001e	; Timer/Counter2 Overflow
@@ -76,11 +76,11 @@
 .equ	OC0Aaddr	= 0x002a	; Timer/Counter0 Compare Match A
 .equ	OC0Baddr	= 0x002c	; Timer/Counter0 Compare Match B
 .equ	OVF0addr	= 0x002e	; Timer/Counter0 Overflow
-.equ	SPIaddr	= 0x0030	; SPI Serial Transfer Complete
+.equ	SPIaddr	    = 0x0030	; SPI Serial Transfer Complete
 .equ	URXC0addr	= 0x0032	; USART0, Rx Complete
 .equ	UDRE0addr	= 0x0034	; USART0 Data register Empty
 .equ	UTXC0addr	= 0x0036	; USART0, Tx Complete
-.equ	ACIaddr	= 0x0038	; Analog Comparator
+.equ	ACIaddr	    = 0x0038	; Analog Comparator
 .equ	ADCCaddr	= 0x003a	; ADC Conversion Complete
 .equ	ERDYaddr	= 0x003c	; EEPROM Ready
 .equ	ICP3addr	= 0x003e	; Timer/Counter3 Capture Event
@@ -91,7 +91,7 @@
 .equ	URXC1addr	= 0x0048	; USART1, Rx Complete
 .equ	UDRE1addr	= 0x004a	; USART1 Data register Empty
 .equ	UTXC1addr	= 0x004c	; USART1, Tx Complete
-.equ	TWIaddr	= 0x004e	; 2-wire Serial Interface
+.equ	TWIaddr	    = 0x004e	; 2-wire Serial Interface
 .equ	SPMRaddr	= 0x0050	; Store Program Memory Read
 .equ	ICP4addr	= 0x0052	; Timer/Counter4 Capture Event
 .equ	OC4Aaddr	= 0x0054	; Timer/Counter4 Compare Match A
@@ -111,7 +111,6 @@
 .equ	UTXC3addr	= 0x0070	; USART3, Tx Complete
 
 .equ	INT_VECTORS_SIZE	= 114	; size in words
-
 
 ; ***** I/O REGISTER DEFINITIONS *****************************************
 ; NOTE:
@@ -245,8 +244,8 @@
 .equ	CLKPR	= 0x61	; MEMORY MAPPED
 .equ	WDTCSR	= 0x60	; MEMORY MAPPED
 .equ	SREG	= 0x3f
-.equ	SPL	= 0x3d
-.equ	SPH	= 0x3e
+.equ	SPL	    = 0x3d
+.equ	SPH	    = 0x3e
 .equ	EIND	= 0x3c
 .equ	RAMPZ	= 0x3b
 .equ	SPMCSR	= 0x37
@@ -1061,7 +1060,7 @@
 .equ	WDP0	= 0	; Watch Dog Timer Prescaler bit 0
 .equ	WDP1	= 1	; Watch Dog Timer Prescaler bit 1
 .equ	WDP2	= 2	; Watch Dog Timer Prescaler bit 2
-.equ	WDE	= 3	; Watch Dog Enable
+.equ	WDE	    = 3	; Watch Dog Enable
 .equ	WDCE	= 4	; Watchdog Change Enable
 .equ	WDP3	= 5	; Watchdog Timer Prescaler Bit 3
 .equ	WDIE	= 6	; Watchdog Timeout Interrupt Enable
@@ -1084,7 +1083,7 @@
 .equ	U2X1	= 1	; Double the USART transmission speed
 .equ	UPE1	= 2	; Parity Error
 .equ	DOR1	= 3	; Data overRun
-.equ	FE1	= 4	; Framing Error
+.equ	FE1	    = 4	; Framing Error
 .equ	UDRE1	= 5	; USART Data Register Empty
 .equ	TXC1	= 6	; USART Transmitt Complete
 .equ	RXC1	= 7	; USART Receive Complete
@@ -1357,7 +1356,7 @@
 .equ	IDRD	= OCDR7	; For compatibility
 
 ; MCUCR - MCU Control Register
-.equ	JTD	= 7	; JTAG Interface Disable
+.equ	JTD	    = 7	; JTAG Interface Disable
 
 ; MCUSR - MCU Status Register
 .equ	JTRF	= 4	; JTAG Reset Flag
@@ -1459,7 +1458,7 @@
 ; MCUCR - MCU Control Register
 .equ	IVCE	= 0	; Interrupt Vector Change Enable
 .equ	IVSEL	= 1	; Interrupt Vector Select
-.equ	PUD	= 4	; Pull-up disable
+.equ	PUD	    = 4	; Pull-up disable
 ;.equ	JTD	= 7	; JTAG Interface Disable
 
 ; MCUSR - MCU Status Register
@@ -1477,7 +1476,7 @@
 .equ	SRL0	= 4	; Wait state page limit
 .equ	SRL1	= 5	; Wait state page limit
 .equ	SRL2	= 6	; Wait state page limit
-.equ	SRE	= 7	; External SRAM Enable
+.equ	SRE	    = 7	; External SRAM Enable
 
 ; XMCRB - External Memory Control Register B
 .equ	XMM0	= 0	; External Memory High Mask
@@ -1495,18 +1494,18 @@
 .equ	CAL6	= 6	; Oscillator Calibration Value Bit6
 .equ	CAL7	= 7	; Oscillator Calibration Value Bit7
 
-; CLKPR - 
-.equ	CLKPS0	= 0	; 
-.equ	CLKPS1	= 1	; 
-.equ	CLKPS2	= 2	; 
-.equ	CLKPS3	= 3	; 
-.equ	CLKPCE	= 7	; 
+; CLKPR -
+.equ	CLKPS0	= 0	;
+.equ	CLKPS1	= 1	;
+.equ	CLKPS2	= 2	;
+.equ	CLKPS3	= 3	;
+.equ	CLKPCE	= 7	;
 
 ; SMCR - Sleep Mode Control Register
-.equ	SE	= 0	; Sleep Enable
-.equ	SM0	= 1	; Sleep Mode Select bit 0
-.equ	SM1	= 2	; Sleep Mode Select bit 1
-.equ	SM2	= 3	; Sleep Mode Select bit 2
+.equ	SE	    = 0	; Sleep Enable
+.equ	SM0	    = 1	; Sleep Mode Select bit 0
+.equ	SM1	    = 2	; Sleep Mode Select bit 1
+.equ	SM2	    = 3	; Sleep Mode Select bit 2
 
 ; RAMPZ - RAM Page Z Select Register
 .equ	RAMPZ0	= 0	; RAM Page Z Select Register Bit 0
@@ -1549,12 +1548,12 @@
 .equ	PRUSART1	= 0	; Power Reduction USART1
 .equ	PRUSART2	= 1	; Power Reduction USART2
 .equ	PRUSART3	= 2	; Power Reduction USART3
-.equ	PRTIM3	= 3	; Power Reduction Timer/Counter3
-.equ	PRTIM4	= 4	; Power Reduction Timer/Counter4
-.equ	PRTIM5	= 5	; Power Reduction Timer/Counter5
+.equ	PRTIM3	    = 3	; Power Reduction Timer/Counter3
+.equ	PRTIM4	    = 4	; Power Reduction Timer/Counter4
+.equ	PRTIM5	    = 5	; Power Reduction Timer/Counter5
 
 ; PRR0 - Power Reduction Register0
-.equ	PRADC	= 0	; Power Reduction ADC
+.equ	PRADC	    = 0	; Power Reduction ADC
 .equ	PRUSART0	= 1	; Power Reduction USART
 .equ	PRSPI	= 2	; Power Reduction Serial Peripheral Interface
 .equ	PRTIM1	= 3	; Power Reduction Timer/Counter1
@@ -1761,8 +1760,8 @@
 
 
 ; ***** LOCKSBITS ********************************************************
-.equ	LB1	= 0	; Lock bit
-.equ	LB2	= 1	; Lock bit
+.equ	LB1	    = 0	; Lock bit
+.equ	LB2	    = 1	; Lock bit
 .equ	BLB01	= 2	; Boot Lock bit
 .equ	BLB02	= 3	; Boot Lock bit
 .equ	BLB11	= 4	; Boot lock bit
@@ -1797,12 +1796,12 @@
 
 ; ***** DATA MEMORY DECLARATIONS *****************************************
 .equ	FLASHEND	= 0x1ffff	; Note: Word address
-.equ	IOEND	= 0x01ff
+.equ	IOEND   	= 0x01ff
 .equ	SRAM_START	= 0x0200
 .equ	SRAM_SIZE	= 8192
-.equ	RAMEND	= 0x21ff
-.equ	XRAMEND	= 0xffff
-.equ	E2END	= 0x0fff
+.equ	RAMEND	    = 0x21ff
+.equ	XRAMEND	    = 0xffff
+.equ	E2END	    = 0x0fff
 .equ	EEPROMEND	= 0x0fff
 .equ	EEADRBITS	= 12
 #pragma AVRPART MEMORY PROG_FLASH 262144
@@ -1815,7 +1814,7 @@
 .equ	NRWW_STOP_ADDR	= 0x1ffff
 .equ	RWW_START_ADDR	= 0x0
 .equ	RWW_STOP_ADDR	= 0x1efff
-.equ	PAGESIZE	= 128
+.equ	PAGESIZE	    = 128
 .equ	FIRSTBOOTSTART	= 0x1fe00
 .equ	SECONDBOOTSTART	= 0x1fc00
 .equ	THIRDBOOTSTART	= 0x1f800
