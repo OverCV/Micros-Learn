@@ -40,7 +40,7 @@ main:
 
     ; Inicializar el contador de interrupciones
     LDI     R20,            0                           ; Contador de interrupciones
-    LDI     R17,            64                          ; 64 interrupciones para contar 1 segundo
+    LDI     R17,            125                          ; 64 interrupciones para contar 1 segundo
 
     ; Inicializar vector de estados
     LDI     R25,            0x00
@@ -77,7 +77,6 @@ isr_t0:
 
 reti_isr_t0:
     RETI
-
 
 table:
     ; Tabla de dígitos 0-9 en ánodo común
