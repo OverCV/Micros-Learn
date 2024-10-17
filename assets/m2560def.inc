@@ -322,10 +322,10 @@
 .equ	ACIS1	= 1	; Analog Comparator Interrupt Mode Select bit 1
 .equ	ACIC	= 2	; Analog Comparator Input Capture Enable
 .equ	ACIE	= 3	; Analog Comparator Interrupt Enable
-.equ	ACI	= 4	; Analog Comparator Interrupt Flag
-.equ	ACO	= 5	; Analog Compare Output
+.equ	ACI	    = 4	; Analog Comparator Interrupt Flag
+.equ	ACO	    = 5	; Analog Compare Output
 .equ	ACBG	= 6	; Analog Comparator Bandgap Select
-.equ	ACD	= 7	; Analog Comparator Disable
+.equ	ACD	    = 7	; Analog Comparator Disable
 
 ; DIDR1 - Digital Input Disable Register 1
 .equ	AIN0D	= 0	; AIN0 Digital Input Disable
@@ -348,7 +348,7 @@
 .equ	U2X0	= 1	; Double the USART transmission speed
 .equ	UPE0	= 2	; Parity Error
 .equ	DOR0	= 3	; Data overRun
-.equ	FE0	= 4	; Framing Error
+.equ	FE0	    = 4	; Framing Error
 .equ	UDRE0	= 5	; USART Data Register Empty
 .equ	TXC0	= 6	; USART Transmitt Complete
 .equ	RXC0	= 7	; USART Receive Complete
@@ -396,30 +396,30 @@
 
 ; ***** TWI **************************
 ; TWAMR - TWI (Slave) Address Mask Register
-.equ	TWAM0	= 1	; 
+.equ	TWAM0	= 1	;
 .equ	TWAMR0	= TWAM0	; For compatibility
-.equ	TWAM1	= 2	; 
+.equ	TWAM1	= 2	;
 .equ	TWAMR1	= TWAM1	; For compatibility
-.equ	TWAM2	= 3	; 
+.equ	TWAM2	= 3	;
 .equ	TWAMR2	= TWAM2	; For compatibility
-.equ	TWAM3	= 4	; 
+.equ	TWAM3	= 4	;
 .equ	TWAMR3	= TWAM3	; For compatibility
-.equ	TWAM4	= 5	; 
+.equ	TWAM4	= 5	;
 .equ	TWAMR4	= TWAM4	; For compatibility
-.equ	TWAM5	= 6	; 
+.equ	TWAM5	= 6	;
 .equ	TWAMR5	= TWAM5	; For compatibility
-.equ	TWAM6	= 7	; 
+.equ	TWAM6	= 7	;
 .equ	TWAMR6	= TWAM6	; For compatibility
 
 ; TWBR - TWI Bit Rate register
-.equ	TWBR0	= 0	; 
-.equ	TWBR1	= 1	; 
-.equ	TWBR2	= 2	; 
-.equ	TWBR3	= 3	; 
-.equ	TWBR4	= 4	; 
-.equ	TWBR5	= 5	; 
-.equ	TWBR6	= 6	; 
-.equ	TWBR7	= 7	; 
+.equ	TWBR0	= 0	;
+.equ	TWBR1	= 1	;
+.equ	TWBR2	= 2	;
+.equ	TWBR3	= 3	;
+.equ	TWBR4	= 4	;
+.equ	TWBR5	= 5	;
+.equ	TWBR6	= 6	;
+.equ	TWBR7	= 7	;
 
 ; TWCR - TWI Control Register
 .equ	TWIE	= 0	; TWI Interrupt Enable
@@ -483,28 +483,28 @@
 .equ	CPOL	= 3	; Clock polarity
 .equ	MSTR	= 4	; Master/Slave Select
 .equ	DORD	= 5	; Data Order
-.equ	SPE	= 6	; SPI Enable
+.equ	SPE	    = 6	; SPI Enable
 .equ	SPIE	= 7	; SPI Interrupt Enable
 
 
 ; ***** PORTA ************************
 ; PORTA - Port A Data Register
 .equ	PORTA0	= 0	; Port A Data Register bit 0
-.equ	PA0	= 0	; For compatibility
+.equ	PA0 	= 0	; For compatibility
 .equ	PORTA1	= 1	; Port A Data Register bit 1
-.equ	PA1	= 1	; For compatibility
+.equ	PA1 	= 1	; For compatibility
 .equ	PORTA2	= 2	; Port A Data Register bit 2
-.equ	PA2	= 2	; For compatibility
+.equ	PA2 	= 2	; For compatibility
 .equ	PORTA3	= 3	; Port A Data Register bit 3
-.equ	PA3	= 3	; For compatibility
+.equ	PA3 	= 3	; For compatibility
 .equ	PORTA4	= 4	; Port A Data Register bit 4
-.equ	PA4	= 4	; For compatibility
+.equ	PA4 	= 4	; For compatibility
 .equ	PORTA5	= 5	; Port A Data Register bit 5
-.equ	PA5	= 5	; For compatibility
+.equ	PA5 	= 5	; For compatibility
 .equ	PORTA6	= 6	; Port A Data Register bit 6
-.equ	PA6	= 6	; For compatibility
+.equ	PA6 	= 6	; For compatibility
 .equ	PORTA7	= 7	; Port A Data Register bit 7
-.equ	PA7	= 7	; For compatibility
+.equ	PA7 	= 7	; For compatibility
 
 ; DDRA - Port A Data Direction Register
 .equ	DDA0	= 0	; Data Direction Register, Port A, bit 0
@@ -530,21 +530,21 @@
 ; ***** PORTB ************************
 ; PORTB - Port B Data Register
 .equ	PORTB0	= 0	; Port B Data Register bit 0
-.equ	PB0	= 0	; For compatibility
+.equ	PB0 	= 0	; For compatibility
 .equ	PORTB1	= 1	; Port B Data Register bit 1
-.equ	PB1	= 1	; For compatibility
+.equ	PB1 	= 1	; For compatibility
 .equ	PORTB2	= 2	; Port B Data Register bit 2
-.equ	PB2	= 2	; For compatibility
+.equ	PB2 	= 2	; For compatibility
 .equ	PORTB3	= 3	; Port B Data Register bit 3
-.equ	PB3	= 3	; For compatibility
+.equ	PB3 	= 3	; For compatibility
 .equ	PORTB4	= 4	; Port B Data Register bit 4
-.equ	PB4	= 4	; For compatibility
+.equ	PB4 	= 4	; For compatibility
 .equ	PORTB5	= 5	; Port B Data Register bit 5
-.equ	PB5	= 5	; For compatibility
+.equ	PB5 	= 5	; For compatibility
 .equ	PORTB6	= 6	; Port B Data Register bit 6
-.equ	PB6	= 6	; For compatibility
+.equ	PB6 	= 6	; For compatibility
 .equ	PORTB7	= 7	; Port B Data Register bit 7
-.equ	PB7	= 7	; For compatibility
+.equ	PB7 	= 7	; For compatibility
 
 ; DDRB - Port B Data Direction Register
 .equ	DDB0	= 0	; Port B Data Direction Register bit 0
@@ -570,21 +570,21 @@
 ; ***** PORTC ************************
 ; PORTC - Port C Data Register
 .equ	PORTC0	= 0	; Port C Data Register bit 0
-.equ	PC0	= 0	; For compatibility
+.equ	PC0 	= 0	; For compatibility
 .equ	PORTC1	= 1	; Port C Data Register bit 1
-.equ	PC1	= 1	; For compatibility
+.equ	PC1 	= 1	; For compatibility
 .equ	PORTC2	= 2	; Port C Data Register bit 2
-.equ	PC2	= 2	; For compatibility
+.equ	PC2 	= 2	; For compatibility
 .equ	PORTC3	= 3	; Port C Data Register bit 3
-.equ	PC3	= 3	; For compatibility
+.equ	PC3 	= 3	; For compatibility
 .equ	PORTC4	= 4	; Port C Data Register bit 4
-.equ	PC4	= 4	; For compatibility
+.equ	PC4 	= 4	; For compatibility
 .equ	PORTC5	= 5	; Port C Data Register bit 5
-.equ	PC5	= 5	; For compatibility
+.equ	PC5 	= 5	; For compatibility
 .equ	PORTC6	= 6	; Port C Data Register bit 6
-.equ	PC6	= 6	; For compatibility
+.equ	PC6 	= 6	; For compatibility
 .equ	PORTC7	= 7	; Port C Data Register bit 7
-.equ	PC7	= 7	; For compatibility
+.equ	PC7 	= 7	; For compatibility
 
 ; DDRC - Port C Data Direction Register
 .equ	DDC0	= 0	; Port C Data Direction Register bit 0
@@ -610,21 +610,21 @@
 ; ***** PORTD ************************
 ; PORTD - Port D Data Register
 .equ	PORTD0	= 0	; Port D Data Register bit 0
-.equ	PD0	= 0	; For compatibility
+.equ	PD0 	= 0	; For compatibility
 .equ	PORTD1	= 1	; Port D Data Register bit 1
-.equ	PD1	= 1	; For compatibility
+.equ	PD1 	= 1	; For compatibility
 .equ	PORTD2	= 2	; Port D Data Register bit 2
-.equ	PD2	= 2	; For compatibility
+.equ	PD2 	= 2	; For compatibility
 .equ	PORTD3	= 3	; Port D Data Register bit 3
-.equ	PD3	= 3	; For compatibility
+.equ	PD3 	= 3	; For compatibility
 .equ	PORTD4	= 4	; Port D Data Register bit 4
-.equ	PD4	= 4	; For compatibility
+.equ	PD4 	= 4	; For compatibility
 .equ	PORTD5	= 5	; Port D Data Register bit 5
-.equ	PD5	= 5	; For compatibility
+.equ	PD5 	= 5	; For compatibility
 .equ	PORTD6	= 6	; Port D Data Register bit 6
-.equ	PD6	= 6	; For compatibility
+.equ	PD6 	= 6	; For compatibility
 .equ	PORTD7	= 7	; Port D Data Register bit 7
-.equ	PD7	= 7	; For compatibility
+.equ	PD7 	= 7	; For compatibility
 
 ; DDRD - Port D Data Direction Register
 .equ	DDD0	= 0	; Port D Data Direction Register bit 0
@@ -650,21 +650,21 @@
 ; ***** PORTE ************************
 ; PORTE - Data Register, Port E
 .equ	PORTE0	= 0	; 
-.equ	PE0	= 0	; For compatibility
+.equ	PE0 	= 0	; For compatibility
 .equ	PORTE1	= 1	; 
-.equ	PE1	= 1	; For compatibility
+.equ	PE1 	= 1	; For compatibility
 .equ	PORTE2	= 2	; 
-.equ	PE2	= 2	; For compatibility
+.equ	PE2 	= 2	; For compatibility
 .equ	PORTE3	= 3	; 
-.equ	PE3	= 3	; For compatibility
+.equ	PE3 	= 3	; For compatibility
 .equ	PORTE4	= 4	; 
-.equ	PE4	= 4	; For compatibility
+.equ	PE4 	= 4	; For compatibility
 .equ	PORTE5	= 5	; 
-.equ	PE5	= 5	; For compatibility
+.equ	PE5 	= 5	; For compatibility
 .equ	PORTE6	= 6	; 
-.equ	PE6	= 6	; For compatibility
+.equ	PE6 	= 6	; For compatibility
 .equ	PORTE7	= 7	; 
-.equ	PE7	= 7	; For compatibility
+.equ	PE7 	= 7	; For compatibility
 
 ; DDRE - Data Direction Register, Port E
 .equ	DDE0	= 0	; 
@@ -690,21 +690,21 @@
 ; ***** PORTF ************************
 ; PORTF - Data Register, Port F
 .equ	PORTF0	= 0	; 
-.equ	PF0	= 0	; For compatibility
+.equ	PF0 	= 0	; For compatibility
 .equ	PORTF1	= 1	; 
-.equ	PF1	= 1	; For compatibility
+.equ	PF1 	= 1	; For compatibility
 .equ	PORTF2	= 2	; 
-.equ	PF2	= 2	; For compatibility
+.equ	PF2 	= 2	; For compatibility
 .equ	PORTF3	= 3	; 
-.equ	PF3	= 3	; For compatibility
+.equ	PF3 	= 3	; For compatibility
 .equ	PORTF4	= 4	; 
-.equ	PF4	= 4	; For compatibility
+.equ	PF4 	= 4	; For compatibility
 .equ	PORTF5	= 5	; 
-.equ	PF5	= 5	; For compatibility
+.equ	PF5 	= 5	; For compatibility
 .equ	PORTF6	= 6	; 
-.equ	PF6	= 6	; For compatibility
+.equ	PF6 	= 6	; For compatibility
 .equ	PORTF7	= 7	; 
-.equ	PF7	= 7	; For compatibility
+.equ	PF7 	= 7	; For compatibility
 
 ; DDRF - Data Direction Register, Port F
 .equ	DDF0	= 0	; 
@@ -730,17 +730,17 @@
 ; ***** PORTG ************************
 ; PORTG - Data Register, Port G
 .equ	PORTG0	= 0	; 
-.equ	PG0	= 0	; For compatibility
+.equ	PG0 	= 0	; For compatibility
 .equ	PORTG1	= 1	; 
-.equ	PG1	= 1	; For compatibility
+.equ	PG1 	= 1	; For compatibility
 .equ	PORTG2	= 2	; 
-.equ	PG2	= 2	; For compatibility
+.equ	PG2 	= 2	; For compatibility
 .equ	PORTG3	= 3	; 
-.equ	PG3	= 3	; For compatibility
+.equ	PG3 	= 3	; For compatibility
 .equ	PORTG4	= 4	; 
-.equ	PG4	= 4	; For compatibility
+.equ	PG4 	= 4	; For compatibility
 .equ	PORTG5	= 5	; 
-.equ	PG5	= 5	; For compatibility
+.equ	PG5 	= 5	; For compatibility
 
 ; DDRG - Data Direction Register, Port G
 .equ	DDG0	= 0	; 
@@ -762,21 +762,21 @@
 ; ***** PORTH ************************
 ; PORTH - PORT H Data Register
 .equ	PORTH0	= 0	; PORT H Data Register bit 0
-.equ	PH0	= 0	; For compatibility
+.equ	PH0 	= 0	; For compatibility
 .equ	PORTH1	= 1	; PORT H Data Register bit 1
-.equ	PH1	= 1	; For compatibility
+.equ	PH1 	= 1	; For compatibility
 .equ	PORTH2	= 2	; PORT H Data Register bit 2
-.equ	PH2	= 2	; For compatibility
+.equ	PH2 	= 2	; For compatibility
 .equ	PORTH3	= 3	; PORT H Data Register bit 3
-.equ	PH3	= 3	; For compatibility
+.equ	PH3 	= 3	; For compatibility
 .equ	PORTH4	= 4	; PORT H Data Register bit 4
-.equ	PH4	= 4	; For compatibility
+.equ	PH4 	= 4	; For compatibility
 .equ	PORTH5	= 5	; PORT H Data Register bit 5
-.equ	PH5	= 5	; For compatibility
+.equ	PH5 	= 5	; For compatibility
 .equ	PORTH6	= 6	; PORT H Data Register bit 6
-.equ	PH6	= 6	; For compatibility
+.equ	PH6 	= 6	; For compatibility
 .equ	PORTH7	= 7	; PORT H Data Register bit 7
-.equ	PH7	= 7	; For compatibility
+.equ	PH7 	= 7	; For compatibility
 
 ; DDRH - PORT H Data Direction Register
 .equ	DDH0	= 0	; PORT H Data Direction Register bit 0
@@ -802,21 +802,21 @@
 ; ***** PORTJ ************************
 ; PORTJ - PORT J Data Register
 .equ	PORTJ0	= 0	; PORT J Data Register bit 0
-.equ	PJ0	= 0	; For compatibility
+.equ	PJ0 	= 0	; For compatibility
 .equ	PORTJ1	= 1	; PORT J Data Register bit 1
-.equ	PJ1	= 1	; For compatibility
+.equ	PJ1 	= 1	; For compatibility
 .equ	PORTJ2	= 2	; PORT J Data Register bit 2
-.equ	PJ2	= 2	; For compatibility
+.equ	PJ2 	= 2	; For compatibility
 .equ	PORTJ3	= 3	; PORT J Data Register bit 3
-.equ	PJ3	= 3	; For compatibility
+.equ	PJ3 	= 3	; For compatibility
 .equ	PORTJ4	= 4	; PORT J Data Register bit 4
-.equ	PJ4	= 4	; For compatibility
+.equ	PJ4 	= 4	; For compatibility
 .equ	PORTJ5	= 5	; PORT J Data Register bit 5
-.equ	PJ5	= 5	; For compatibility
+.equ	PJ5 	= 5	; For compatibility
 .equ	PORTJ6	= 6	; PORT J Data Register bit 6
-.equ	PJ6	= 6	; For compatibility
+.equ	PJ6 	= 6	; For compatibility
 .equ	PORTJ7	= 7	; PORT J Data Register bit 7
-.equ	PJ7	= 7	; For compatibility
+.equ	PJ7 	= 7	; For compatibility
 
 ; DDRJ - PORT J Data Direction Register
 .equ	DDJ0	= 0	; PORT J Data Direction Register bit 0
@@ -842,21 +842,21 @@
 ; ***** PORTK ************************
 ; PORTK - PORT K Data Register
 .equ	PORTK0	= 0	; PORT K Data Register bit 0
-.equ	PK0	= 0	; For compatibility
+.equ	PK0 	= 0	; For compatibility
 .equ	PORTK1	= 1	; PORT K Data Register bit 1
-.equ	PK1	= 1	; For compatibility
+.equ	PK1 	= 1	; For compatibility
 .equ	PORTK2	= 2	; PORT K Data Register bit 2
-.equ	PK2	= 2	; For compatibility
+.equ	PK2 	= 2	; For compatibility
 .equ	PORTK3	= 3	; PORT K Data Register bit 3
-.equ	PK3	= 3	; For compatibility
+.equ	PK3 	= 3	; For compatibility
 .equ	PORTK4	= 4	; PORT K Data Register bit 4
-.equ	PK4	= 4	; For compatibility
+.equ	PK4 	= 4	; For compatibility
 .equ	PORTK5	= 5	; PORT K Data Register bit 5
-.equ	PK5	= 5	; For compatibility
+.equ	PK5 	= 5	; For compatibility
 .equ	PORTK6	= 6	; PORT K Data Register bit 6
-.equ	PK6	= 6	; For compatibility
+.equ	PK6 	= 6	; For compatibility
 .equ	PORTK7	= 7	; PORT K Data Register bit 7
-.equ	PK7	= 7	; For compatibility
+.equ	PK7 	= 7	; For compatibility
 
 ; DDRK - PORT K Data Direction Register
 .equ	DDK0	= 0	; PORT K Data Direction Register bit 0
@@ -882,21 +882,21 @@
 ; ***** PORTL ************************
 ; PORTL - PORT L Data Register
 .equ	PORTL0	= 0	; PORT L Data Register bit 0
-.equ	PL0	= 0	; For compatibility
+.equ	PL0 	= 0	; For compatibility
 .equ	PORTL1	= 1	; PORT L Data Register bit 1
-.equ	PL1	= 1	; For compatibility
+.equ	PL1 	= 1	; For compatibility
 .equ	PORTL2	= 2	; PORT L Data Register bit 2
-.equ	PL2	= 2	; For compatibility
+.equ	PL2 	= 2	; For compatibility
 .equ	PORTL3	= 3	; PORT L Data Register bit 3
-.equ	PL3	= 3	; For compatibility
+.equ	PL3 	= 3	; For compatibility
 .equ	PORTL4	= 4	; PORT L Data Register bit 4
-.equ	PL4	= 4	; For compatibility
+.equ	PL4 	= 4	; For compatibility
 .equ	PORTL5	= 5	; PORT L Data Register bit 5
-.equ	PL5	= 5	; For compatibility
+.equ	PL5 	= 5	; For compatibility
 .equ	PORTL6	= 6	; PORT L Data Register bit 6
-.equ	PL6	= 6	; For compatibility
+.equ	PL6 	= 6	; For compatibility
 .equ	PORTL7	= 7	; PORT L Data Register bit 7
-.equ	PL7	= 7	; For compatibility
+.equ	PL7 	= 7	; For compatibility
 
 ; DDRL - PORT L Data Direction Register
 .equ	DDL0	= 0	; PORT L Data Direction Register bit 0
@@ -942,39 +942,39 @@
 .equ	CS00	= 0	; Clock Select
 .equ	CS01	= 1	; Clock Select
 .equ	CS02	= 2	; Clock Select
-.equ	WGM02	= 3	; 
+.equ	WGM02	= 3	;
 .equ	FOC0B	= 6	; Force Output Compare B
 .equ	FOC0A	= 7	; Force Output Compare A
 
 ; TCNT0 - Timer/Counter0
-.equ	TCNT0_0	= 0	; 
-.equ	TCNT0_1	= 1	; 
-.equ	TCNT0_2	= 2	; 
-.equ	TCNT0_3	= 3	; 
-.equ	TCNT0_4	= 4	; 
-.equ	TCNT0_5	= 5	; 
-.equ	TCNT0_6	= 6	; 
-.equ	TCNT0_7	= 7	; 
+.equ	TCNT0_0	= 0	;
+.equ	TCNT0_1	= 1	;
+.equ	TCNT0_2	= 2	;
+.equ	TCNT0_3	= 3	;
+.equ	TCNT0_4	= 4	;
+.equ	TCNT0_5	= 5	;
+.equ	TCNT0_6	= 6	;
+.equ	TCNT0_7	= 7	;
 
 ; OCR0A - Timer/Counter0 Output Compare Register
-.equ	OCR0A_0	= 0	; 
-.equ	OCR0A_1	= 1	; 
-.equ	OCR0A_2	= 2	; 
-.equ	OCR0A_3	= 3	; 
-.equ	OCR0A_4	= 4	; 
-.equ	OCR0A_5	= 5	; 
-.equ	OCR0A_6	= 6	; 
-.equ	OCR0A_7	= 7	; 
+.equ	OCR0A_0	= 0	;
+.equ	OCR0A_1	= 1	;
+.equ	OCR0A_2	= 2	;
+.equ	OCR0A_3	= 3	;
+.equ	OCR0A_4	= 4	;
+.equ	OCR0A_5	= 5	;
+.equ	OCR0A_6	= 6	;
+.equ	OCR0A_7	= 7	;
 
 ; OCR0B - Timer/Counter0 Output Compare Register
-.equ	OCR0B_0	= 0	; 
-.equ	OCR0B_1	= 1	; 
-.equ	OCR0B_2	= 2	; 
-.equ	OCR0B_3	= 3	; 
-.equ	OCR0B_4	= 4	; 
-.equ	OCR0B_5	= 5	; 
-.equ	OCR0B_6	= 6	; 
-.equ	OCR0B_7	= 7	; 
+.equ	OCR0B_0	= 0	;
+.equ	OCR0B_1	= 1	;
+.equ	OCR0B_2	= 2	;
+.equ	OCR0B_3	= 3	;
+.equ	OCR0B_4	= 4	;
+.equ	OCR0B_5	= 5	;
+.equ	OCR0B_6	= 6	;
+.equ	OCR0B_7	= 7	;
 
 ; GTCCR - General Timer/Counter Control Register
 .equ	PSRSYNC	= 0	; Prescaler Reset Timer/Counter1 and Timer/Counter0
@@ -1046,7 +1046,7 @@
 .equ	OCR2BUB	= 2	; Output Compare Register 2 Update Busy
 .equ	OCR2AUB	= 3	; Output Compare Register2 Update Busy
 .equ	TCN2UB	= 4	; Timer/Counter2 Update Busy
-.equ	AS2	= 5	; Asynchronous Timer/Counter2
+.equ	AS2	    = 5	; Asynchronous Timer/Counter2
 .equ	EXCLK	= 6	; Enable External Clock Input
 
 ; GTCCR - General Timer Counter Control register
@@ -1659,7 +1659,7 @@
 .equ	U2X2	= 1	; Double the USART transmission speed
 .equ	UPE2	= 2	; Parity Error
 .equ	DOR2	= 3	; Data overRun
-.equ	FE2	= 4	; Framing Error
+.equ	FE2 	= 4	; Framing Error
 .equ	UDRE2	= 5	; USART Data Register Empty
 .equ	TXC2	= 6	; USART Transmitt Complete
 .equ	RXC2	= 7	; USART Receive Complete
@@ -1717,7 +1717,7 @@
 .equ	U2X3	= 1	; Double the USART transmission speed
 .equ	UPE3	= 2	; Parity Error
 .equ	DOR3	= 3	; Data overRun
-.equ	FE3	= 4	; Framing Error
+.equ	FE3	    = 4	; Framing Error
 .equ	UDRE3	= 5	; USART Data Register Empty
 .equ	TXC3	= 6	; USART Transmitt Complete
 .equ	RXC3	= 7	; USART Receive Complete
