@@ -20,7 +20,7 @@ main:
     OUT     TCCR0A,         R16
 
     ; Establecer el valor máximo en OCR0A (contar hasta 250)
-    LDI     R16,            250
+    LDI     R16,            125
     OUT     OCR0A,          R16                         ; Configurar el valor de comparación en OCR0A
 
     ; Configurar el prescaler en 1024 (CS02 = 1, CS01 = 0, CS00 = 1)
@@ -47,14 +47,11 @@ reset:
     ROL     ZH
 
 loop:
-    IN      R21,            PIND
-
     LPM     R20,            Z
 
     CPI     ZL,             0xCA
     BREQ    reset
 
-    ANDI    R21,            0x03
     OUT     PORTA,          R20
 
     RJMP    loop
@@ -65,8 +62,8 @@ isr_t0:
     DEC     R17                                         ; Decrementar el contador de interrupciones
     BRNE    reti_isr_t0                                 ; Si no es 0 salimos de la interrupción
 
-    ; Si se alcanzaron 64 interrupciones, incrementar contador de segundos
-    LDI     R17,            64                          ; Reiniciar el contador de interrupciones
+    ; Si se alcanzaron 125 interrupciones, incrementar contador de segundos
+    LDI     R17,            125                          ; Reiniciar el contador de interrupciones
 
     ; Incrementar el contador de segundos
     INC     ZL
