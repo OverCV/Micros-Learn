@@ -7,6 +7,13 @@
     .org        OC0Aaddr
     RJMP    isr_t0
 
+/*
+Se pone el Timer Control Register 0A (TCCR0A) en 0x10 para activar el WGM01, ya activado, el OC0A (Compare Match 0A) (permite asignar un 250) que ante la comparación con este tope reiniciará el contador (+generando la interrupción OC0Aaddr).
+Luego miramos el TCCR0B, el que permite el prescaling porque tiene los bits del CS00 CS01 CS02 que en valor de 0x05 dan un prescaling de 1024, luego pues activamos el OC0A con el TIMSK0 porque el bit asociado es el 1 (activado con OCIE0A: On Compare Interrupt Enable 0A) y luego podríamos habilitar las interrupciones globales con SEI pero pues ya lo hicimos al inicio.
+
+revisar en `assets\atmel-2549-8-bit-avr-microcontroller-atmega640-1280-1281-2560-2561_datasheet.pdf` para más información.
+*/
+
 main:
     ; Habilitar interrupciones globales
     SEI
