@@ -103,9 +103,13 @@ delay:
 L1:
     DEC     R27
     BRNE    L1
+
+    LDI     R26,                    43
     DEC     R26
     BRNE    L1
+
     DEC     R25
+    LDI     R27,                    0
     BRNE    L1
     LPM
     NOP

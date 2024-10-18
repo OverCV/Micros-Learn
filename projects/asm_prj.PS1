@@ -25,6 +25,7 @@ loop:
 .org(0x0100)
 table:
     ; Tabla de datos
+    ; .dw
 
 "@
 
