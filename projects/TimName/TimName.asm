@@ -78,3 +78,11 @@ table:
     ; Tabla de datos
     ; .dw  'o', 'v', 'e', 'r'
     .dw  0xFFC0, 0xEECF, 0xDFC6, 0xD9CC
+
+    ;     NM.LKJH GPFE.DCBA
+    ; Z XX11.1111 1111.1111
+
+    ; O = C0FF
+    ; V = CFEE
+    ; E = C6DF
+    ; R = CCD9
