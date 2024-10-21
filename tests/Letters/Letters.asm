@@ -33,7 +33,7 @@ main:
 
     ; Inicializar el contador de interrupciones
     LDI     R20,            0                           ; Contador de interrupciones
-    LDI     R17,            125                          ; 125 interrupciones para contar 1 segundo
+    LDI     R17,            62                          ; 125 interrupciones para contar 1 segundo
 
 reset:
     ; Iniciar contador y puntero Z
