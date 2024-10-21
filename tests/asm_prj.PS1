@@ -4,7 +4,7 @@ param(
 )
 
 # Crear el directorio del proyecto
-New-Item -ItemType Directory -Force -Path $ProjectName
+New-Item -ItemType Directory -Force -Path $ProjectName\proto
 
 # Crear el archivo .asm
 $asmContent = @"
@@ -26,7 +26,6 @@ loop:
 table:
     ; Tabla de datos
     ; .dw
-
 "@
 
 Set-Content -Path "$ProjectName\$ProjectName.asm" -Value $asmContent
