@@ -33,7 +33,7 @@ main:
     ; Vector de estado
     LDI     R25,            0x00
 
-    ; Interrupciones globales
+    ; Activar Interrupciones Globales
     SEI
 
 timer_clock_conf:
