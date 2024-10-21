@@ -84,7 +84,7 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="16" x="168" flags="80000000" y="280" h="32" pid="14" iid="1">
+   <POPUP w="16" x="168" flags="00000000" y="280" h="32" pid="14" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>

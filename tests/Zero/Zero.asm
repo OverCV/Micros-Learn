@@ -22,7 +22,7 @@
     ; La entrada debe ser activada por interrupción.
     ; Deben almacenarsen los valores en la memora del programa.
 
-    .equ        ONE_SEC = 125
+    .equ        ONE_SEC = 70
 
 main:
     ; Definición entradas o salidas
@@ -32,7 +32,6 @@ main:
 
     ; Vector de estado
     LDI     R25,        0x00
-
 
     ; Interrupciones globales
     SEI
@@ -52,42 +51,62 @@ timer_clock_conf:
     STS     TIMSK0,     R16
     ; Inicializar el contador de interrupciones
     LDI     R17,        ONE_SEC
+    LDI     R19,        0
 
 interruptions_conf:
-    ; INT0, INT1
+    ; Activar INT(0, 1)
     LDI     R16,        0x03
     OUT     EIMSK,      R16
     ; Configurar detección de cambio
     LDI     R16,        0x0F
     STS     EICRA,      R16
 
-reset:
-    ; Inicializar
-    LDI     XH,         HIGH(table_name    *  2)
-    LDI     XL,         LOW(table_name     *  2)
-    LDI     R16,        8
-    SBRC    R25,        0
-    ADD     XL,         R16
-
-    LDI     YH,         HIGH(table_nums    *  2)
-    LDI     YL,         LOW(table_nums     *  2)
-    LDI     R16,        4
+reset_table:
     SBRC    R25,        1
-    ADD     XL,         R16
+    RJMP    reset_y
 
+reset_x:
+    LDI     ZH,         HIGH(table_name    *  2)
+    LDI     ZL,         LOW(table_name     *  2)
+
+    LDI     R16,        8
+    SBRC    R25,        0   ; b0=0 inicia
+    ADD     ZL,         R16
+    RJMP    loop
+
+reset_y:
+    LDI     ZH,         HIGH(table_nums    *  2)
+    LDI     ZL,         LOW(table_nums     *  2)
+    LDI     R16,        4
+    SBRC    R25,        0   ; b0=0 inicia
+    ADD     ZL,         R16
+    RJMP    loop
 
 loop:
     LPM     R20,        Z+
     LPM     R21,        Z
     DEC     ZL
 
+    ; comparar si se salió y consultar vector de estado
+    SBRC    R21,        7
+    RJMP    reset_table
+
+    COM     R20
+    COM     R21
+
+    OUT     PORTA,      R20
+    OUT     PORTC,      R21
 
     RJMP    loop
 
 isr_0:
+    LDI     R16,    0x01
+    EOR     R25,    R16
     RETI
 
 isr_1:
+    LDI     R16,    0x02
+    EOR     R25,    R16
     RETI
 
 tisr_0:
@@ -96,9 +115,12 @@ tisr_0:
     LDI     R17,        ONE_SEC
 
     LDI     R16,        2
+
+    SBRC    R25,        0
+    SUB     ZL,         R16
+
+    SBRS    R25,        0
     ADD     ZL,         R16
-
-
 
 tisr_reti:
     RETI
@@ -110,4 +132,11 @@ table_name:
     .org        (0x0200)
 table_nums:
     .dw         0x220f, 0x0006
-    ; .dw         0x003f, 0x221b, 0x220f, 0x2227, 0x223d
+    ; .dw         0x003f, 0x221B, 0x220f, 0x2227, 0x223d
+
+    ; En este programa se almacenará el código y cédula de un estudiante en la memoria Flash del programa y se mostrará por un conflay 7Segmentos ánodo común.
+    ; Según una entrada de 02 bits se mostrará el código (0) o cédula (1) con el bit menos significativo, el más significativo mostrará los dígitos en orden ascendente (0) o descendente (1).
+
+    ; 00: ASC Código. 01: ASC Cédula. 10: DESC Código. 11: DESC Cédula ;
+
+    ; Se usarán los puertos B0 y B1 para posterior implementación con interrupciones.

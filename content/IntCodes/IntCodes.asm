@@ -19,6 +19,7 @@ main:
     ; Habilitar INT_0, INT1
     LDI     R17,    0x01
     OUT     EIMSK,  R17
+
     ; Configurar con cambio de nivel (conf=00)
     LDI     R18,    0x00
     STS     EICRA,  R18
