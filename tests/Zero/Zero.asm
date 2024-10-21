@@ -129,9 +129,11 @@ tisr_reti:
 
     .org        (0x0100)
 table_name:
+    ; Nombre = OVER
     .dw         0x003F, 0x1130, 0x2239, 0x2633
 
     .org        (0x0200)
 table_nums:
+    ; Número = 13
     .dw         0x220f, 0x0006
     ; .dw         0x003f, 0x221B, 0x220f, 0x2227, 0x223D
