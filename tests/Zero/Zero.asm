@@ -1,17 +1,17 @@
     .include    "m2560def.inc"
 
-    .org    (0x0000)
+    .org        (0x0000)
     RJMP    main
 
     ; interrupt service routines
-    .org    (INT0addr)
+    .org        (INT0addr)
     RJMP    isr_0
 
-    .org    (INT1addr)
+    .org        (INT1addr)
     RJMP    isr_1
 
     ; timer/counter compare match
-    .org    (OC0Aaddr)
+    .org        (OC0Aaddr)
     RJMP    tisr_0
 
     ; Diseñar un programa que combinando dos bits:
@@ -22,38 +22,66 @@
     ; La entrada debe ser activada por interrupción.
     ; Deben almacenarsen los valores en la memora del programa.
 
-    .equ    PROG_MEM_DIR = 0x0100
-    .equ    ONE_SEC      = 125
+    .equ        ONE_SEC = 125
 
 main:
     ; Definición entradas o salidas
-    LDI     R16,    0xFF
-    OUT     DDRA,   R16
-    OUT     DDRC,   R16
+    LDI     R16,        0xFF
+    OUT     DDRA,       R16
+    OUT     DDRC,       R16
+
+    ; Vector de estado
+    LDI     R25,        0x00
+
+
+    ; Interrupciones globales
+    SEI
 
 timer_clock_conf:
     ; Configurar Timer0 en modo CTC (Clear Timer on Compare Match)
-    LDI     R16,    0x02                ; WGM01 = 1, modo CTC
-    OUT     TCCR0A, R16
+    LDI     R16,        0x02                        ; WGM01 = 1, modo CTC
+    OUT     TCCR0A,     R16
     ; Establecer el valor máximo en OCR0A
-    LDI     R16,    ONE_SEC
-    OUT     OCR0A,  R16                 ; Valor de comparación en OCR0A
+    LDI     R16,        ONE_SEC
+    OUT     OCR0A,      R16                         ; Valor de comparación en OCR0A
     ; Configurar el prescaler en 1024 (CS02 = 1, CS01 = 0, CS00 = 1)
-    LDI     R16,    0x05
-    OUT     TCCR0B, R16
+    LDI     R16,        0x05
+    OUT     TCCR0B,     R16
     ; Habilitar la interrupción de comparación para el Timer0 (OCIE0A)
-    LDI     R16,    0x02                ; Habilitar interrupción de comparación (OCIE0A)
-    STS     TIMSK0, R16
+    LDI     R16,        0x02                        ; Habilitar interrupción de comparación (OCIE0A)
+    STS     TIMSK0,     R16
     ; Inicializar el contador de interrupciones
-    LDI     R17,    ONE_SEC
+    LDI     R17,        ONE_SEC
 
 interruptions_conf:
-
+    ; INT0, INT1
+    LDI     R16,        0x03
+    OUT     EIMSK,      R16
+    ; Configurar detección de cambio
+    LDI     R16,        0x0F
+    STS     EICRA,      R16
 
 reset:
     ; Inicializar
+    LDI     XH,         HIGH(table_name    *  2)
+    LDI     XL,         LOW(table_name     *  2)
+    LDI     R16,        8
+    SBRC    R25,        0
+    ADD     XL,         R16
+
+    LDI     YH,         HIGH(table_nums    *  2)
+    LDI     YL,         LOW(table_nums     *  2)
+    LDI     R16,        4
+    SBRC    R25,        1
+    ADD     XL,         R16
+
 
 loop:
+    LPM     R20,        Z+
+    LPM     R21,        Z
+    DEC     ZL
+
+
     RJMP    loop
 
 isr_0:
@@ -63,17 +91,23 @@ isr_1:
     RETI
 
 tisr_0:
-    DEC     R17                                         ; Decrementar el contador de interrupciones
+    DEC     R17
     BRNE    tisr_reti
-    LDI     R17,            62
+    LDI     R17,        ONE_SEC
+
+    LDI     R16,        2
+    ADD     ZL,         R16
+
+
 
 tisr_reti:
     RETI
 
-    .org        (PROG_MEM_DIR)
+    .org        (0x0100)
 table_name:
-    .dw 0x003F, 0x1130, 0x2239, 0x2633
+    .dw         0x003F, 0x1130, 0x2239, 0x2633
 
-table_numbers:
-    .dw 0x220f, 0x0006
-    ; .dw 0x003f, 0x221b, 0x220f, 0x2227, 0x223d
+    .org        (0x0200)
+table_nums:
+    .dw         0x220f, 0x0006
+    ; .dw         0x003f, 0x221b, 0x220f, 0x2227, 0x223d

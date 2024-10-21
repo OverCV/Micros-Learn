@@ -52,6 +52,21 @@
 
 #pragma AVRPART CORE CORE_VERSION V3
 
+; ***** DATA MEMORY DECLARATIONS *****************************************
+.equ	FLASHEND	= 0x1ffff	; Note: Word address
+.equ	IOEND   	= 0x01ff
+.equ	SRAM_START	= 0x0200
+.equ	SRAM_SIZE	= 8192
+.equ	RAMEND	    = 0x21ff
+.equ	XRAMEND	    = 0xffff
+.equ	E2END	    = 0x0fff
+.equ	EEPROMEND	= 0x0fff
+.equ	EEADRBITS	= 12
+#pragma AVRPART MEMORY PROG_FLASH 262144
+#pragma AVRPART MEMORY EEPROM 4096
+#pragma AVRPART MEMORY INT_SRAM SIZE 8192
+#pragma AVRPART MEMORY INT_SRAM START_ADDR 0x200
+
 ; ***** INTERRUPT VECTORS ************************************************
 .equ	INT0addr	= 0x0002	; External Interrupt Request 0
 .equ	INT1addr	= 0x0004	; External Interrupt Request 1
@@ -1794,20 +1809,6 @@
 .equ	BODLEVEL1	= 1	; Brown-out Detector trigger level
 .equ	BODLEVEL2	= 2	; Brown-out Detector trigger level
 
-; ***** DATA MEMORY DECLARATIONS *****************************************
-.equ	FLASHEND	= 0x1ffff	; Note: Word address
-.equ	IOEND   	= 0x01ff
-.equ	SRAM_START	= 0x0200
-.equ	SRAM_SIZE	= 8192
-.equ	RAMEND	    = 0x21ff
-.equ	XRAMEND	    = 0xffff
-.equ	E2END	    = 0x0fff
-.equ	EEPROMEND	= 0x0fff
-.equ	EEADRBITS	= 12
-#pragma AVRPART MEMORY PROG_FLASH 262144
-#pragma AVRPART MEMORY EEPROM 4096
-#pragma AVRPART MEMORY INT_SRAM SIZE 8192
-#pragma AVRPART MEMORY INT_SRAM START_ADDR 0x200
 
 ; ***** BOOTLOADER DECLARATIONS ******************************************
 .equ	NRWW_START_ADDR	= 0x1f000
