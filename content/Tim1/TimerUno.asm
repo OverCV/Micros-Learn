@@ -50,7 +50,7 @@ loop:
     OUT     PORTA,      R18
     OUT     PORTC,      R19
 
-    CPI     ZL,         0xB4
+    CPI     ZL,         LOW(table*2)+10
     BREQ    reset
 
     RJMP    loop
