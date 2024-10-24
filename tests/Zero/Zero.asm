@@ -77,7 +77,7 @@ reset_x:
 reset_y:
     LDI     ZH,             HIGH(table_nums    *  2)
     LDI     ZL,             LOW(table_nums     *  2)
-    LDI     R16,            4
+    LDI     R16,            10
     SBRC    R25,            0                           ; b0=0 inicia
     ADD     ZL,             R16
     RJMP    loop
@@ -135,5 +135,5 @@ table_name:
     .org        (0x0200)
 table_nums:
     ; Número = 13
-    .dw         0x220f, 0x0006
-    ; .dw         0x003f, 0x221B, 0x220f, 0x2227, 0x223D
+    ; .dw         0x220f, 0x0006
+    .dw         0x003f, 0x221B, 0x220f, 0x2227, 0x223D
