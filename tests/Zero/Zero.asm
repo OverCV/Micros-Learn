@@ -79,7 +79,7 @@ reset_y:
     LDI     ZH,             HIGH(table_nums    *  2)
 
     SBRC    R25,            0
-    LDI     ZL,             LOW(table_nums     *  2) + 2
+    LDI     ZL,             LOW(table_nums     *  2) + 6
     SBRS    R25,            0
     LDI     ZL,             LOW(table_nums     *  2)
 
@@ -140,4 +140,4 @@ table_name:
     .org        (0x0200)
 table_nums:
     ; Número = 123
-    .dw         0x063F, 0x4F5B
+    .dw         0x003F, 0x0006, 0x221B, 0x220F
