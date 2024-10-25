@@ -69,7 +69,7 @@ reset_x:
     LDI     ZH,             HIGH(table_name    *  2)
 
     SBRC    R25,            0
-    LDI     ZL,             LOW(table_name     *  2) + 6
+    LDI     ZL,             LOW(table_name     *  2) + 8
     SBRS    R25,            0
     LDI     ZL,             LOW(table_name     *  2)
 
@@ -79,7 +79,7 @@ reset_y:
     LDI     ZH,             HIGH(table_nums    *  2)
 
     SBRC    R25,            0
-    LDI     ZL,             LOW(table_nums     *  2) + 8
+    LDI     ZL,             LOW(table_nums     *  2) + 2
     SBRS    R25,            0
     LDI     ZL,             LOW(table_nums     *  2)
 
@@ -132,10 +132,12 @@ tisr_reti:
 
     .org        (0x0100)
 table_name:
-    ; Nombre = OVER
-    .dw         0x003F, 0x1130, 0x2239, 0x2633
+    ; ; Nombre = OVER
+    ; .dw         0x003F, 0x1130, 0x2239, 0x2633
+    ; Nombre = NUBIA
+    .dw         0x0476, 0x003E, 0x0A8F, 0x0889, 0x2237
 
     .org        (0x0200)
 table_nums:
-    ; Número = 20396
-    .dw         0x221B, 0x003f, 0x220f, 0x2227, 0x223D
+    ; Número = 123
+    .dw         0x063F, 0x4F5B
