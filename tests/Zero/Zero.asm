@@ -67,26 +67,29 @@ reset_table:
 
 reset_x:
     LDI     ZH,             HIGH(table_name    *  2)
+
+    SBRC    R25,            0
+    LDI     ZL,             LOW(table_name     *  2) + 6
+    SBRS    R25,            0
     LDI     ZL,             LOW(table_name     *  2)
 
-    LDI     R16,            8
-    SBRC    R25,            0                           ; b0=0 inicia
-    ADD     ZL,             R16
     RJMP    loop
 
 reset_y:
     LDI     ZH,             HIGH(table_nums    *  2)
+
+    SBRC    R25,            0
+    LDI     ZL,             LOW(table_nums     *  2) + 8
+    SBRS    R25,            0
     LDI     ZL,             LOW(table_nums     *  2)
-    LDI     R16,            10
-    SBRC    R25,            0                           ; b0=0 inicia
-    ADD     ZL,             R16
+
     RJMP    loop
 
 loop:
     ; Mantenemos estable la lectura en Z
     LPM     R20,            Z+
-    LPM     R21,            Z
-    DEC     ZL
+    LPM     R21,            Z+
+    SUBI    ZL,             2
 
     ; comparar si se salió y consultar vector de estado
     SBRC    R21,            7
@@ -134,6 +137,5 @@ table_name:
 
     .org        (0x0200)
 table_nums:
-    ; Número = 13
-    ; .dw         0x220f, 0x0006
-    .dw         0x003f, 0x221B, 0x220f, 0x2227, 0x223D
+    ; Número = 20396
+    .dw         0x221B, 0x003f, 0x220f, 0x2227, 0x223D

@@ -12,7 +12,10 @@ main:
     OUT     DDRA,       R16
     OUT     DDRC,       R16
 
-    LDI     R17,        2                               ; Movedor del puntero
+    ; Movedor del puntero
+    LDI     R17,        2
+    ; Contador de iteraciones
+    LDI     R25,        5
 
     SEI
 
@@ -26,7 +29,6 @@ conf_tim_1:
     ; configurar el preescalar en 1024 para alcanzar el numero 15.625
     LDI     R16,        0x3D
     STS     OCR1AH,     R16
-    ; configurar el preescalar en 1024 para alcanzar el numero 15.625
     LDI     R16,        0x09
     STS     OCR1AL,     R16
     ; Habilitar la interrupción de comparación para el Timer1 (OCIE1A)
@@ -36,21 +38,22 @@ conf_tim_1:
 
 
 reset:
-    LDI     R31,        HIGH(table, *,  2)
-    LDI     R30,        LOW(table,  *,  2)
+    LDI     R31,        HIGH(table *  2)
+    LDI     ZL,         LOW(table  *  2)
 
 loop:
-    LPM     R18,        Z+
-    LPM     R19,        Z
     ; Se complementan los valores porque se guardaron para Cátodo.
-    DEC     R30
-
+    LPM     R18,        Z+
     COM     R18
-    COM     R19
     OUT     PORTA,      R18
+
+    LPM     R19,        Z+
+    COM     R19
     OUT     PORTC,      R19
 
-    CPI     ZL,         LOW(table*2)+10
+    SUB     ZL,         R17
+
+    CPI     ZL,         LOW(table  *  2) + 20
     BREQ    reset
 
     RJMP    loop
@@ -58,10 +61,11 @@ loop:
 tim_isr_1:
     DEC     R25
     BRNE    reti_tim_1
-    LDI     R25,        5                               ; Los 5 son arbitrarios y parecen un buen tiempo
+    ; Los 5 son arbitrarios y parecen un buen tiempo
     ; Pero falta encontrar la ecuación para este timer y tener tiempos exactos
+    LDI     R25,        5
 
-    ADD     R30,        R17
+    ADD     ZL,         R17
 
 reti_tim_1:
     RETI
