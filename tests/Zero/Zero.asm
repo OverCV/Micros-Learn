@@ -132,12 +132,12 @@ tisr_reti:
 
     .org        (0x0100)
 table_name:
-    ; ; Nombre = OVER
+    ; ; Nombre = OVER   (8-2)
     ; .dw         0x003F, 0x1130, 0x2239, 0x2633
-    ; Nombre = NUBIA
+    ; Nombre = NUBIA    (10-2)
     .dw         0x0476, 0x003E, 0x0A8F, 0x0889, 0x2237
 
     .org        (0x0200)
 table_nums:
-    ; Número = 123
+    ; Número = 0123 (8-2)
     .dw         0x003F, 0x0006, 0x221B, 0x220F
