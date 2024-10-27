@@ -31,3 +31,4 @@ avrdude --version
 ```bash
 make --version
 ```
+Cambiar `C_Cpp.clang_format_style` con `{BasedOnStyle: llvm, BreakBeforeBraces: Attach}`

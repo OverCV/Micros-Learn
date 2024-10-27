@@ -71,8 +71,8 @@ TARGET_ARCH = -mmcu=$(MCU)
 
 ## Explicit pattern rules:
 ## To make .o files from .c files
-%.o: %.c $(HEADERS) Makefile
-	 $(CC) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c -o $@ $<
+%.o: %.cpp $(HEADERS) Makefile
+	 $(CC) $(CPPFLAGS) $(CFLAGS) $(TARGET_ARCH) -c -o $@ $<
 
 ## To make .elf files from .o files
 $(TARGET).elf: $(OBJECTS)
