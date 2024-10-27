@@ -13,3 +13,8 @@
 **/*.tmp
 **/*.elf
 **/*.o
+
+.vscode
+*./vscode
+*./vscode/*
+*./.vs/
