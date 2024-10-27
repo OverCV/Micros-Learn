@@ -1,15 +1,33 @@
 # Microcontrollers Learning
 
-## Descripción
+## Descripción :pencil2: :books:
 
-Este repositorio contiene información sobre el aprendizaje de dos microcontroladores de la familia ATMel, el ATmega328P y el ATmega2560. Se incluyen ejemplos de código y ejercicios para el aprendizaje de estos microcontroladores.
+Este repositorio contiene información sobre el aprendizaje adquirido en dos microcontroladores de la familia Atmel, el ATmega328P y **ATmega2560**. Principalmente se a utilizado para el período lectivo 2024A el ATMega2560, de forma que hay mejor código en `.asm` y `.cpp` para este microcontrolador así como sus simulaciones en Proteus (`.pdsprj`).
 
-El microcontrolador ATmega328P tiene ejercicios en la carpeta `/archive` puesto han sido archivados del semestre 2024-1. Los ejercicios del ATmega2560 se encuentran en la carpeta `/projects` y han sido realizados en tiempos de clase.
-
-Dentro de estos directorios muy posiblemente encuentren la carpeta `/proto`, que indica hay un montaje sobre un Arduino UNO o MEGA para la realización de los ejercicios de forma práctica.
-
-En el directorio `/assets` se pueden encontrar imágenes del PIN-OUT del microcontrolador ATmega328P y ATmega2560.
+Para facilitar el aprendizaje se tiene una carpeta `assets/` con imágenes de los PIN-OUT de cada microcontrolador, así como su **set de instrucciones** para conocer los mnemónicos utilizados en según rango de memoria y registros, así como su **datasheet** para conocer características técnicas como particiones de memoria, registros, uso y configuración de interrupciones, temporizadores, etc.
 
 ## Introducción a los microcontroladores :computer: :electric_plug: :bulb:
 
 Un microcontrolador es un circuito integrado programable, capaz de ejecutar las órdenes grabadas en su memoria. Está compuesto por una unidad central de procesamiento, memoria y periféricos de entrada/salida. Los microcontroladores son utilizados en sistemas embebidos, es decir, sistemas electrónicos que realizan una función específica y que no son programables por el usuario.
+
+
+### Instalación AVR Assembly :wrench: :hammer:
+
+### Instalación C++ :wrench: :hammer:
+
+Primero descargarse las herramientas desde [GCC Compiler](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers), luego el [AVR Dude](https://github.com/avrdudes/avrdude/releases) y Makefile, omitible si ya se tiene.
+
+Luego debe añadirse el script python `avrdude.py` en las variables del sistema así mismo como las carpetas ya instaladas.
+Se puede probar con 
+
+```bash
+avr-gcc --version
+```
+
+```bash
+avrdude --version
+```
+
+```bash
+make --version
+```
