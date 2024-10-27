@@ -20,7 +20,7 @@ int main(void) {
   /* Replace with yourw initialization code */
   while (1) {
     led.toggle();
-    _delay_ms(50);
+    _delay_ms(10000);
   }
   return 0;
 }
