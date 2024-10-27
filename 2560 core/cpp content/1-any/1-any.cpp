@@ -6,7 +6,17 @@
 */
 
 #include <avr/io.h>
-#include <avr/interrupt.h>
+#include <avr/iom2560.h>
+
+class LED
+{
+private:
+    /* data */
+public:
+    LED() {
+        DDRB |= (1 << DDB7);
+    }
+};
 
 int main(void) {
     /* Replace with yourw initialization code */
