@@ -9,6 +9,7 @@
 #include <avr/iom2560.h>
 #include <util/delay.h>
 
+
 class LED {
 public:
   LED() { DDRB |= (1 << PB5); }
@@ -17,7 +18,7 @@ public:
 
 int main(void) {
   LED led;
-  /* Replace with yourw initialization code */
+  /* Código aquí 🤗 */
   while (1) {
     led.toggle();
     _delay_ms(10000);
