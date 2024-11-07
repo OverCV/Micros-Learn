@@ -14,7 +14,7 @@ En caso de 8 bits
 
 En caso de 10 bits
 5V:   11111 11111 (1023)
-2.5V  00000 11111 (511)
+2.5V  01111 11111 (511)
   0V  0000 0000 (0) ->  (0.0048V)  0000 0001
 
 Entonces ya necesitamos estas conversiones de binario y a mayor cantidad pues

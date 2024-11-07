@@ -13,7 +13,7 @@ void setup() {
 }
 
 void loop() {
-  // delay(25);
+  delay(25);
   dutyCicle = analogRead(PF0) / 10.23;
   OCR2A = 255 * (dutyCicle / 100); // Duty cicle k%
   Serial.println(dutyCicle);

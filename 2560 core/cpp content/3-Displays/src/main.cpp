@@ -36,8 +36,7 @@ void setup() {
 // Función para mostrar un dígito en un display específico
 void mostrarNumero(int display, int numero) {
   // Desactivar ambos displays antes de cambiar el valor
-  digitalWrite(displaySelect[0], LOW);
-  digitalWrite(displaySelect[1], LOW);
+  digitalWrite(displaySelect[1 - display], LOW);
 
   // Configurar los segmentos para mostrar el número deseado
   for (int i = 0; i < 7; i++) {
@@ -50,7 +49,7 @@ void mostrarNumero(int display, int numero) {
 
 void loop() {
   // Lectura de voltaje del voltímetro (conectado al pin A0)
-  int lecturaADC = analogRead(A0);
+  int lecturaADC = (A0 / 4) * 255;
   float voltaje = lecturaADC * (5.0 / 1023.0);
 
   // Extraer parte entera y decimal
