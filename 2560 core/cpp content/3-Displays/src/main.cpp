@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 // Pines para los segmentos compartidos de los dos displays
-int displayPins[7] = {22, 23, 24, 25, 26, 27, 28}; // Pines de los segmentos A-G
+int pinesDisplay[7] = {22, 23, 24, 25, 26, 27, 28}; // Pines de los segmentos A-G
 
 // Pines para seleccionar cada display
 int displaySelect[2] = {36, 37}; // Pines para activar cada display por separado
@@ -23,7 +23,7 @@ byte numeros[10][7] = {
 void setup() {
   // Configuración de los pines de los segmentos como salidas
   for (int i = 0; i < 7; i++) {
-    pinMode(displayPins[i], OUTPUT);
+    pinMode(pinesDisplay[i], OUTPUT);
   }
 
   // Configuración de los pines de selección de displays como salidas
@@ -40,7 +40,7 @@ void mostrarNumero(int display, int numero) {
 
   // Configurar los segmentos para mostrar el número deseado
   for (int i = 0; i < 7; i++) {
-    digitalWrite(displayPins[i], numeros[numero][i]);
+    digitalWrite(pinesDisplay[i], numeros[numero][i]);
   }
 
   // Activar el display correspondiente

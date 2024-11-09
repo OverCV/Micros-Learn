@@ -119,7 +119,6 @@ set_11:
     RJMP    loop
 
 isr_0:
-
     ; Al activarse esta interrupcion, se configuran 3 iteraciones adicionales
     LDI     R16,        3
     MOV     R27,        R16
@@ -137,18 +136,18 @@ tim_isr_1:
     ; Verificar si hay iteraciones extra en R27 (de la interrupcion externa)
     DEC     R27
     ;BRNE tim_reti ; Si hay iteraciones extra, salir
-    BRNE    reini_R26
-    LDI     R27,        0x01                                ; añadido por mí
+    BRNE    reset_period
+    LDI     R27,        0x01                                ; añadido por Nubis
     ; Incrementar la posición de la tabla una vez completadas todas las iteraciones
     ADD     ZL,         R24
-reini_R26:
+
+reset_period:
     MOV     R26,        R28                     ; añadido por Nubis
 
 tim_reti:
     RETI
 
-            .org        (0x0200)
+    .org        (0x0200)
 table_name:
     ; Tabla de datos
-
-            .dw         0x3F00, 0x18A0, 0x9D00, 0x9E11
+    .dw         0x3F00, 0x18A0, 0x9D00, 0x9E11
