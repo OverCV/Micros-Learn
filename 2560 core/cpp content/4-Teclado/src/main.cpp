@@ -92,7 +92,7 @@ void mostrarEnDisplay(char tecla) {
       {0, 0, 0, 1, 1, 0, 1}, // c (en minúscula)
       {0, 1, 1, 1, 1, 0, 1}, // d (en minúscula)
       {1, 1, 0, 1, 1, 1, 1}, // e (en minúscula)
-      {1, 0, 0, 0, 1, 1, 1}  // f (en minúscula)
+      {1, 0, 0, 0, 1, 1, 1}  // f (en minúscula) 
   };
 
   int index;
