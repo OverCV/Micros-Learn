@@ -1,113 +1,102 @@
-// Configuración de pines para filas, columnas y display de 7 segmentos
-byte pinesFilas[] = {2, 3, 4, 5}; // Pines de filas
-byte pinesColumnas[] = {
-    6, 7, 8,
-    9}; // Pines de columnas en PCINT22 a PCINT25 (Puerto H en ATmega2560)
+#include <Arduino.h>
+
+// Definición de pines
+byte pinesFilas[] = {2, 3, 4, 5};
+// PORTB0-PORTB3 para interrupciones PCINT
+byte pinesColumnas[] = {50, 51, 52, 53};
+
+// Matriz de símbolos del keypad
 char teclas[4][4] = {{'1', '2', '3', 'a'},
                      {'4', '5', '6', 'b'},
                      {'7', '8', '9', 'c'},
                      {'f', '0', 'e', 'd'}};
 
-byte pinesDisplay[] = {22, 23, 24, 25,
-                       26, 27, 28}; // Pines del display de 7 segmentos
+// Pines del display 7 segmentos
+byte pinesDisplay[] = {22, 23, 24, 25, 26, 27, 28}; // a-g
 
+// Patrones del display (1 = encendido, 0 = apagado)
+const byte patrones[][7] = {
+    {1, 1, 1, 1, 1, 1, 0}, // 0
+    {0, 1, 1, 0, 0, 0, 0}, // 1
+    {1, 1, 0, 1, 1, 0, 1}, // 2
+    {1, 1, 1, 1, 0, 0, 1}, // 3
+    {0, 1, 1, 0, 0, 1, 1}, // 4
+    {1, 0, 1, 1, 0, 1, 1}, // 5
+    {1, 0, 1, 1, 1, 1, 1}, // 6
+    {1, 1, 1, 0, 0, 0, 0}, // 7
+    {1, 1, 1, 1, 1, 1, 1}, // 8
+    {1, 1, 1, 1, 0, 1, 1}, // 9
+    {1, 1, 1, 1, 1, 0, 1}, // a
+    {0, 0, 1, 1, 1, 1, 1}, // b
+    {0, 0, 0, 1, 1, 0, 1}, // c
+    {0, 1, 1, 1, 1, 0, 1}, // d
+    {1, 1, 0, 1, 1, 1, 1}, // e
+    {1, 0, 0, 0, 1, 1, 1}  // f
+};
+
+// Variables globales
+volatile bool teclaDetectada = false;
+volatile byte filaActual = 0;
 volatile char teclaPresionada = '\0';
 
 void setup() {
-  for (int i = 0; i < 4; i++) {
+  // Configurar pines de fila como salida
+  for (byte i = 0; i < 4; i++) {
     pinMode(pinesFilas[i], OUTPUT);
-    digitalWrite(pinesFilas[i], HIGH); // Inicializar filas en HIGH
-  }
-
-  // Configuración de pines de las columnas como entrada con resistencia pull-up
-  for (int i = 0; i < 4; i++) {
+    digitalWrite(pinesFilas[i], HIGH);
+    // Configurar pines de columna como entrada con pull-up
     pinMode(pinesColumnas[i], INPUT_PULLUP);
   }
 
-  // Configuración de interrupciones de cambio de pin en PCINT22-PCINT25 (pines
-  // PH3 a PH6)
-  PCICR |= (1 << PCIE2); // Habilitar interrupciones de cambio de pin para el
-                         // grupo PCINT23:16 (Puerto H)
-  PCMSK2 |= (1 << PCINT20) | (1 << PCINT21) | (1 << PCINT22) |
-            (1 << PCINT23); // Habilitar interrupciones para pines PH3-PH6
-
-  // Configuración de pines del display
-  for (int i = 0; i < 7; i++) {
+  // Configurar pines del display como salida
+  for (byte i = 0; i < 7; i++) {
     pinMode(pinesDisplay[i], OUTPUT);
   }
 
-  // Habilitar interrupciones globales
-  sei();
+  // Habilitar interrupciones PCINT para los pines de columna
+  PCICR |= (1 << PCIE0); // Habilitar PCINT0
+  PCMSK0 |= (1 << PCINT0) | (1 << PCINT1) | (1 << PCINT2) | (1 << PCINT3);
 
-  Serial.begin(9600);
+  sei(); // Habilitar interrupciones globales
 }
 
 void loop() {
-  // Pooling para detectar tecla presionada en caso de que la interrupción no
-  // funcione
-  for (int fila = 0; fila < 4; fila++) {
-    digitalWrite(pinesFilas[fila], LOW);
-    for (int columna = 0; columna < 4; columna++) {
+  // Rotar el cero por las filas
+  digitalWrite(pinesFilas[filaActual], HIGH);
+  filaActual = (filaActual + 1) % 4;
+  digitalWrite(pinesFilas[filaActual], LOW);
+
+  // Si se detectó una tecla, identificarla y mostrarla
+  if (teclaDetectada) {
+    for (byte columna = 0; columna < 4; columna++) {
       if (digitalRead(pinesColumnas[columna]) == LOW) {
-        teclaPresionada = teclas[fila][columna];
-        mostrarEnDisplay(teclaPresionada);
-        delay(300);
-        while (digitalRead(pinesColumnas[columna]) == LOW)
-          ; // Espera a que se libere la tecla
+        char tecla = teclas[filaActual][columna];
+        // Mostrar en display (solo aquí se hace la impresión)
+        mostrarEnDisplay(tecla);
+        break;
       }
     }
-    digitalWrite(pinesFilas[fila], HIGH);
+    teclaDetectada = false;
   }
+
+  delayMicroseconds(500);
 }
 
-// Interrupción de cambio de pin para el grupo PCINT23:16 (Columnas)
-ISR(PCINT2_vect) {
-  for (int fila = 0; fila < 4; fila++) {
-    digitalWrite(pinesFilas[fila], LOW);
-    for (int columna = 0; columna < 4; columna++) {
-      if (digitalRead(pinesColumnas[columna]) == LOW) {
-        teclaPresionada = teclas[fila][columna];
-        while (digitalRead(pinesColumnas[columna]) == LOW)
-          ; // Espera a que se libere la tecla
-      }
-    }
-    digitalWrite(pinesFilas[fila], HIGH);
-  }
-}
+// ISR minimalista - solo marca el flag
+ISR(PCINT0_vect) { teclaDetectada = true; }
 
 void mostrarEnDisplay(char tecla) {
-  byte segmentos[16][7] = {
-      {1, 1, 1, 1, 1, 1, 0}, // 0
-      {0, 1, 1, 0, 0, 0, 0}, // 1
-      {1, 1, 0, 1, 1, 0, 1}, // 2
-      {1, 1, 1, 1, 0, 0, 1}, // 3
-      {0, 1, 1, 0, 0, 1, 1}, // 4
-      {1, 0, 1, 1, 0, 1, 1}, // 5
-      {1, 0, 1, 1, 1, 1, 1}, // 6
-      {1, 1, 1, 0, 0, 0, 0}, // 7
-      {1, 1, 1, 1, 1, 1, 1}, // 8
-      {1, 1, 1, 1, 0, 1, 1}, // 9
-      {1, 1, 1, 1, 1, 0, 1}, // a (en minúscula)
-      {0, 0, 1, 1, 1, 1, 1}, // b (en minúscula)
-      {0, 0, 0, 1, 1, 0, 1}, // c (en minúscula)
-      {0, 1, 1, 1, 1, 0, 1}, // d (en minúscula)
-      {1, 1, 0, 1, 1, 1, 1}, // e (en minúscula)
-      {1, 0, 0, 0, 1, 1, 1}  // f (en minúscula) 
-  };
+  byte index;
 
-  int index;
-
-  // Conversión de la tecla a índice numérico
   if (tecla >= '0' && tecla <= '9') {
-    index = tecla - '0'; // Índices de 0 a 9
+    index = tecla - '0';
   } else if (tecla >= 'a' && tecla <= 'f') {
-    index = 10 + (tecla - 'a'); // Índices de 10 a 15 para 'a' a 'f'
+    index = 10 + (tecla - 'a');
   } else {
-    return; // Si el carácter no es soportado, salir de la función
+    return;
   }
 
-  // Activa los segmentos correspondientes en el display
-  for (int i = 0; i < 7; i++) {
-    digitalWrite(pinesDisplay[i], segmentos[index][i]);
+  for (byte i = 0; i < 7; i++) {
+    digitalWrite(pinesDisplay[i], patrones[index][i]);
   }
-};
+}
