@@ -114,7 +114,8 @@ void loop() {
         Serial.println(F("Error: N debe ser un valor positivo."));
       }
       inputN = false;  // Desactivo la bandera después de recibir el N
-      while (Serial.available()) Serial.read();  // Limpieza del buffer
+      while (Serial.available())
+        Serial.read();  // Limpieza del buffer
     }
   }
 
