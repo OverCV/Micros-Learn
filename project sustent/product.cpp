@@ -4,12 +4,12 @@
 
 extern const uint8_t RELAY_WATER;  // Declaramos como externos los pines
 extern const uint8_t RELAY_SODA;   // que vienen del .ino
-extern const uint8_t RELAY_JUICE;   // que vienen del .ino
+extern const uint8_t RELAY_PONY;   // que vienen del .ino
 
 const Product::ProductInfo Product::PRODUCT_CATALOG[] = {
   { 1, "Agua", 500, RELAY_WATER, true, 'A' },
   { 2, "Soda", 700, RELAY_SODA, true, 'B' },
-  { 3, "Poni", 1000, RELAY_JUICE, true, 'C' },
+  { 3, "Pony", 1000, RELAY_PONY, true, 'C' },
 };
 
 const uint8_t Product::PRODUCT_COUNT = sizeof(PRODUCT_CATALOG) / sizeof(ProductInfo);

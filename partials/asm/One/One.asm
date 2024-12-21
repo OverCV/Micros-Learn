@@ -25,7 +25,6 @@ main:
     ; Configurar los puertos como salida
     LDI     R16,        0xBF
     STS     DDRK,       R16
-    ;STS DDRF, R16
     OUT     DDRF,       R16
 
     ; Activar interrupciones globales
@@ -41,7 +40,6 @@ interruptions_conf:
 
 timer_clock_conf:
     ; Configurar Timer1 en modo CTC con OCR1A como tope
-    ;LDI R16, 0x00
     LDI     R16,        0x80
     STS     TCCR1A,     R16
     ; Establecer valor en OCR1A para el temporizador en modo CTC
@@ -50,14 +48,13 @@ timer_clock_conf:
     LDI     R16,        0x09
     STS     OCR1AL,     R16
     ; Prescaler 1024, modo CTC
-    ;LDI R16, 0x1D
     LDI     R16,        0x0D
     STS     TCCR1B,     R16
     ; Habilitar la interrupcion de comparación para Timer1 (OCIE1A)
     LDI     R16,        0x02
     STS     TIMSK1,     R16
-    LDI     R26,        0x01                                ; adicionado por mí
-    LDI     R27,        0x01                                ; adicionado por mí
+    LDI     R26,        0x01    ; adicionado
+    LDI     R27,        0x01    ; adicionado
 
 reset:
     ; Inicialización del contador de iteraciones extra
@@ -79,7 +76,6 @@ loop:
     COM     R20
     COM     R21
     STS     PORTK,      R20
-    ;STS PORTF, R21
     OUT     PORTF,      R21
 
     ; Leer y combinar entradas de PORTK y PORTF en bit 6
@@ -129,13 +125,12 @@ tim_isr_1:
     CPI     R28,        0
     BREQ    tim_reti
     DEC     R26
-    BRNE    tim_reti                                        ; Si no ha llegado a cero, salir de la interrupcion
-
-    ; Reiniciar R26 con el tiempo original
-    ;MOV R26, R17
-    ; Verificar si hay iteraciones extra en R27 (de la interrupcion externa)
+    
+    ; Si no ha llegado a cero, salir de la interrupcion
+    BRNE    tim_reti                                        
     DEC     R27
-    ;BRNE tim_reti ; Si hay iteraciones extra, salir
+
+    ; Si hay iteraciones extra, salir
     BRNE    reset_period
     LDI     R27,        0x01                                ; añadido por Nubis
     ; Incrementar la posición de la tabla una vez completadas todas las iteraciones

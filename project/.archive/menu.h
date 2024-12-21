@@ -7,8 +7,8 @@
 
 class Menu {
 public:
-  struct CartItem {
-    Product::ProductId id;  // Ahora usamos ProductId en lugar de Type
+  struct CartItem {  // Mover a `public`
+    Product::Type type;
     uint8_t quantity;
   };
 
@@ -21,17 +21,17 @@ private:
 
   // Métodos privados auxiliares
   void updateTotal();
-  int8_t findItemIndex(Product::ProductId id) const;
+  int8_t findItemIndex(Product::Type type) const;
 
 public:
   Menu();
 
   // Gestión del carrito
-  bool addToCart(Product::ProductId id);
-  bool removeFromCart(Product::ProductId id);
+  bool addToCart(Product::Type type);
+  bool removeFromCart(Product::Type type);
 
   // Consultas
-  uint8_t getProductCount(Product::ProductId id) const;
+  uint8_t getProductCount(Product::Type type) const;
   uint16_t getTotal() const {
     return _total;
   }

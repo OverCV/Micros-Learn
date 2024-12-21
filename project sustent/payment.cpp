@@ -10,7 +10,6 @@ const Payment::CoinInfo Payment::COIN_CATALOG[] = {
     {1, 100, '1', BTN_COIN_100, LED_COIN_100, coin100Inserted},
     {2, 200, '2', BTN_COIN_200, LED_COIN_200, coin200Inserted},
     {3, 500, '5', BTN_COIN_500, LED_COIN_500, coin500Inserted},
-    {4, 1000, '0', BTN_COIN_1000, LED_COIN_1000, coin1000Inserted},
 };
 
 const uint8_t Payment::COIN_COUNT = sizeof(COIN_CATALOG) / sizeof(CoinInfo);

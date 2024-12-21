@@ -7,28 +7,21 @@ Menu::Menu()
 void Menu::updateTotal() {
   _total = 0;
   for (uint8_t i = 0; i < _cartSize; i++) {
-    const Product::ProductInfo* info = Product::getProductInfo(_cart[i].id);
-    if (info) {
-      _total += info->price * _cart[i].quantity;
-    }
+    _total += Product::getPriceByType(_cart[i].type) * _cart[i].quantity;
   }
 }
 
-int8_t Menu::findItemIndex(Product::ProductId id) const {
+int8_t Menu::findItemIndex(Product::Type type) const {
   for (uint8_t i = 0; i < _cartSize; i++) {
-    if (_cart[i].id == id) {
+    if (_cart[i].type == type) {
       return i;
     }
   }
   return -1;  // No encontrado
 }
 
-bool Menu::addToCart(Product::ProductId id) {
-  if (!Product::isValidProduct(id)) {
-    return false;  // Producto inválido
-  }
-
-  int8_t index = findItemIndex(id);
+bool Menu::addToCart(Product::Type type) {
+  int8_t index = findItemIndex(type);
 
   if (index != -1) {
     // Producto ya existe en el carrito
@@ -38,7 +31,7 @@ bool Menu::addToCart(Product::ProductId id) {
     if (_cartSize >= MAX_ITEMS) {
       return false;  // Carrito lleno
     }
-    _cart[_cartSize].id = id;
+    _cart[_cartSize].type = type;
     _cart[_cartSize].quantity = 1;
     _cartSize++;
   }
@@ -47,8 +40,8 @@ bool Menu::addToCart(Product::ProductId id) {
   return true;
 }
 
-bool Menu::removeFromCart(Product::ProductId id) {
-  int8_t index = findItemIndex(id);
+bool Menu::removeFromCart(Product::Type type) {
+  int8_t index = findItemIndex(type);
 
   if (index != -1) {
     if (--_cart[index].quantity == 0) {
@@ -64,8 +57,8 @@ bool Menu::removeFromCart(Product::ProductId id) {
   return false;
 }
 
-uint8_t Menu::getProductCount(Product::ProductId id) const {
-  int8_t index = findItemIndex(id);
+uint8_t Menu::getProductCount(Product::Type type) const {
+  int8_t index = findItemIndex(type);
   return (index != -1) ? _cart[index].quantity : 0;
 }
 
