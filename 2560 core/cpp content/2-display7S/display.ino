@@ -1,5 +1,3 @@
-#include <Arduino.h>
-
 // Pines para los segmentos compartidos de los dos displays
 int pinesDisplay[7] = {22, 23, 24, 25, 26, 27, 28}; // Pines de los segmentos A-G
 
