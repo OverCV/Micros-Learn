@@ -6,6 +6,7 @@
 // Constantes
 const float KPA_TO_PSI = 0.145;
 const uint8_t PIN_BUTTON = 21;  // Usaré la INT0
+
 const uint8_t PIN_RS = 22;
 const uint8_t PIN_EN = 23;
 const uint8_t PIN_D4 = 24;
