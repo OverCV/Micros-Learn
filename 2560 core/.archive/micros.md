@@ -10,3 +10,4 @@ ACá por ejemplo en SPI MODOS está la señal de reloj, si trabaja con flanco de
 
 
 Entonces la idea es que empecemos a trabajar con el I2C y el SPI para generar la comunicación, en este caso como no tenemos sensores ni actuadores, de forma que debemos comunicarnos entre dos arduínos.
+    
