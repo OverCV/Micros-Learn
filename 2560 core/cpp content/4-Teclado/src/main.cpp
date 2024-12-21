@@ -10,7 +10,7 @@ char teclas[4][4] = {{'1', '2', '3', 'a'},
                      {'4', '5', '6', 'b'},
                      {'7', '8', '9', 'c'},
                      {'f', '0', 'e', 'd'}};
-
+P
 // Pines del display 7 segmentos
 byte pinesDisplay[] = {22, 23, 24, 25, 26, 27, 28}; // a-g
 
