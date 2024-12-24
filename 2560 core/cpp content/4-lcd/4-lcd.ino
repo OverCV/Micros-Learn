@@ -47,18 +47,6 @@ void loop() {
   lcd.display();
   delay(1000);
 
-  // Mostrar caracteres especiales
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Caracteres:");
-  lcd.setCursor(0, 1);
-  lcd.writeChar(0xDF);  // Grado
-  lcd.writeChar(' ');
-  lcd.writeChar(0xA5);  // Yen
-  lcd.writeChar(' ');
-  lcd.writeChar(0xE0);  // è
-  delay(3000);
-
   // Mostrar contador
   lcd.clear();
   for (int i = 0; i <= 10; i++) {

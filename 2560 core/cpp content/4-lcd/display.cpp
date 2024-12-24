@@ -128,37 +128,6 @@ void Display::waitReady() {
     delayMicroseconds(50);
   }
 }
-// void Display::scrollText(String& text, uint8_t row, uint8_t visibleLength, uint16_t updateInterval) {
-//   static uint8_t counter = 0;      // Contador para controlar la frecuencia
-//   static uint8_t scrollIndex = 0;  // Índice de la posición actual
-
-//   // Incrementar el contador, solo actualiza si alcanza el intervalo
-//   if (++counter < updateInterval) {
-//     return;
-//   }
-//   counter = 0;  // Reiniciar contador
-
-//   // Mostrar el estado del texto antes de moverlo
-//   Serial.print(F("Texto antes de rotar: "));
-//   Serial.println(text);
-
-//   // Mover el primer carácter al final para "rotar" el texto
-//   char firstChar = text.charAt(0);
-//   text.remove(0, 1);  // Eliminar el primer carácter
-//   text += firstChar;  // Añadirlo al final
-
-//   // Mostrar el estado del texto después de rotarlo
-//   Serial.print(F("Texto después de rotar: "));
-//   Serial.println(text);
-
-//   // Mostrar la sección visible del texto
-//   setCursor(0, row);
-//   String visible = text.substring(0, visibleLength);
-//   Serial.print(F("Texto visible: "));
-//   Serial.println(visible);
-
-//   print(visible);
-// }
 
 
 void Display::display() {

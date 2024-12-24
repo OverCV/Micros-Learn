@@ -47,12 +47,6 @@ private:
   void pulseEnable();
   void waitReady();
 
-  // Prueba de scrolling
-  uint32_t _lastScrollTime = 0;  // Última vez que se actualizó el scroll
-  uint16_t _scrollIndex = 0;     // Índice actual del scroll
-  String _scrollText = "";       // Texto a desplazar
-  uint8_t _scrollRow = 0;        // Fila del texto desplazado
-
 
 public:
   Display(uint8_t rs, uint8_t en, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7, bool simulationMode = true);
@@ -71,7 +65,6 @@ public:
   void blink();
   void noBlink();
 
-  // void scrollText(String& text, uint8_t row, uint8_t visibleLength, uint16_t updateInterval);
 };
 
 #endif
