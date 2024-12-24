@@ -10,7 +10,7 @@ Usando sensores de presión MPX4115 diseñados para medir la presion atomosféri
 > 4. 5.6. No conectados.
 
 ### Instrucciones
-Conectar cuatro de estos sensores, leídos por conversor Análogo-Digital.
+Se han de conectar cuatro de estos sensores, leídos por conversor Análogo-Digital.
 Configurar pantalla LCD donde se muestra el promedio de la presión medida por los cuatro sensores en kPa.
 
 Debe haber un pulsador conectado a una interrupción externa del microcontrolador, al presionarse se muestra por un período de tiempo de $T$ segundos, el mismo valor de presión pero en PSI. La base de tiempo es $b=0.5x$ segundos, con $x$ como último número de su código. El valor de $T$ está calculado mediante $T=Nb$, con $N$ como un valor que ingresa el usuario por el puerto serial cada que solicite ver el valor de presión en PSI.
