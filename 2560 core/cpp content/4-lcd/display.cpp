@@ -129,6 +129,66 @@ void Display::waitReady() {
   }
 }
 
+// Rotacional
+void Display::startScroll(String text, uint8_t row, bool direction) {
+  if (text.length() <= LCD_COLS) {
+    // Si el texto es más corto que el display, solo mostrarlo centrado
+    clear();
+    setCursor((LCD_COLS - text.length()) / 2, row);
+    print(text);
+    _isScrolling = false;
+    return;
+  }
+
+  _scrollText = text;
+  _scrollPosition = 0;
+  _scrollRow = row;
+  _scrollDirection = direction;
+  _isScrolling = true;
+
+  // Mostrar los primeros caracteres
+  updateScroll();
+}
+
+void Display::stopScroll() {
+  _isScrolling = false;
+  _scrollText = "";
+  _scrollPosition = 0;
+}
+
+void Display::updateScroll() {
+  if (!_isScrolling) return;
+
+  uint16_t textLen = _scrollText.length();
+  String displayText = "";
+
+  // Construir el texto a mostrar
+  for (uint8_t i = 0; i < LCD_COLS; i++) {
+    uint16_t charPos = (_scrollPosition + i) % textLen;
+    displayText += _scrollText[charPos];
+  }
+
+  // Actualizar display
+  setCursor(0, _scrollRow);
+  print(displayText);
+
+  // Actualizar posición para la siguiente actualización
+  if (_scrollDirection) {
+    // Rotar derecha
+    if (_scrollPosition == 0) {
+      _scrollPosition = textLen - 1;
+    } else {
+      _scrollPosition--;
+    }
+  } else {
+    // Rotar izquierda
+    _scrollPosition = (_scrollPosition + 1) % textLen;
+  }
+}
+
+void Display::setScrollDirection(bool direction) {
+  _scrollDirection = direction;
+}
 
 void Display::display() {
   command(LCD_DISPLAYCONTROL | LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF);

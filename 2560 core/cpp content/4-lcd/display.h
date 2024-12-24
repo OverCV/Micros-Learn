@@ -43,6 +43,15 @@ private:
   static const uint8_t LCD_5x10DOTS = 0x04;
   static const uint8_t LCD_5x8DOTS = 0x00;
 
+  // Scroll
+  String _scrollText;                  // Texto completo para rotar
+  uint8_t _scrollPosition;             // Posición actual de la rotación
+  uint8_t _scrollRow;                  // Fila donde se muestra el texto rotativo
+  bool _isScrolling;                   // Flag para indicar si hay rotación activa
+  bool _scrollDirection;               // true = derecha, false = izquierda
+  static const uint8_t LCD_COLS = 16;  // Número de columnas del LCD
+
+
   void sendNibble(uint8_t nibble);
   void pulseEnable();
   void waitReady();
@@ -65,6 +74,14 @@ public:
   void blink();
   void noBlink();
 
+  // Métodos para manejo de texto rotativo
+  void startScroll(String text, uint8_t row = 0, bool direction = false);
+  void stopScroll();
+  void updateScroll();
+  bool isScrolling() const {
+    return _isScrolling;
+  }
+  void setScrollDirection(bool direction);
 };
 
 #endif
