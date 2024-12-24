@@ -51,6 +51,11 @@ private:
   bool _scrollDirection;               // true = derecha, false = izquierda
   static const uint8_t LCD_COLS = 16;  // Número de columnas del LCD
 
+  // Custom
+  static const uint8_t CGRAM_CHARS = 8;  // Número máximo de caracteres custom
+  static const uint8_t CHAR_HEIGHT = 8;  // Altura de cada caracter en pixels
+  uint8_t _customCharCount;              // Número de caracteres custom registrados
+
 
   void sendNibble(uint8_t nibble);
   void pulseEnable();
@@ -82,6 +87,12 @@ public:
     return _isScrolling;
   }
   void setScrollDirection(bool direction);
+
+  // Caracteres personalizados
+  bool createChar(uint8_t location, const uint8_t charmap[]);
+  void writeCustomChar(uint8_t location);
+  // Método sobrecargado para crear varios caracteres a la vez
+  bool createChars(const uint8_t* charmap, uint8_t numChars);
 };
 
 #endif

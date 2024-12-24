@@ -190,6 +190,43 @@ void Display::setScrollDirection(bool direction) {
   _scrollDirection = direction;
 }
 
+// Custom
+bool Display::createChar(uint8_t location, const uint8_t charmap[]) {
+  // Validar ubicación
+  if (location >= CGRAM_CHARS) return false;
+
+  // Establecer dirección CGRAM (0x40 + (ubicación * 8))
+  command(LCD_SETCGRAMADDR | (location << 3));
+
+  // Escribir los 8 bytes del patrón
+  for (uint8_t i = 0; i < CHAR_HEIGHT; i++) {
+    writeChar(charmap[i]);
+  }
+
+  // Volver a modo normal (DDRAM)
+  command(LCD_SETDDRAMADDR);
+
+  return true;
+}
+
+void Display::writeCustomChar(uint8_t location) {
+  if (location >= CGRAM_CHARS) return;
+  writeChar(location);  // Los caracteres custom se acceden con códigos 0-7
+}
+
+bool Display::createChars(const uint8_t* charmap, uint8_t numChars) {
+  if (numChars > CGRAM_CHARS) return false;
+
+  for (uint8_t i = 0; i < numChars; i++) {
+    if (!createChar(i, &charmap[i * CHAR_HEIGHT])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Base
+
 void Display::display() {
   command(LCD_DISPLAYCONTROL | LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF);
 }
