@@ -162,7 +162,7 @@ void Display::updateScroll() {
   uint16_t textLen = _scrollText.length();
   String displayText = "";
 
-  // Construir el texto a mostrar..
+  // Construir el texto a mostrar...
   for (uint8_t i = 0; i < LCD_COLS; i++) {
     uint16_t charPos = (_scrollPosition + i) % textLen;
     displayText += _scrollText[charPos];
