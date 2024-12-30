@@ -172,7 +172,7 @@ void Display::updateScroll() {
   setCursor(0, _scrollRow);
   print(displayText);
 
-  // Actualizar posición para la siguiente actualización
+  // Actualizar posición para la siguiente actualización.
   if (_scrollDirection) {
     // Rotar derecha
     if (_scrollPosition == 0) {
