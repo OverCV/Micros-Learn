@@ -181,7 +181,7 @@ void Display::updateScroll() {
       _scrollPosition--;
     }
   } else {
-    // Rotar izquierda
+    // Rotar izquierda.
     _scrollPosition = (_scrollPosition + 1) % textLen;
   }
 }
