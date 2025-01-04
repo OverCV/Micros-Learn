@@ -8,8 +8,8 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "c:/Users/overd/Saved Games/Computacion/Hardware/Microcontrollers/UC/2024B/Learning/2560 core/cpp content/2-pwm/include",
-                "c:/Users/overd/Saved Games/Computacion/Hardware/Microcontrollers/UC/2024B/Learning/2560 core/cpp content/2-pwm/src",
+                // "c:/Users/overd/Saved Games/Computacion/Hardware/Microcontrollers/UC/2024B/Learning/2560 core/cpp content/2-pwm/include",
+                // "c:/Users/overd/Saved Games/Computacion/Hardware/Microcontrollers/UC/2024B/Learning/2560 core/cpp content/2-pwm/src",
                 "C:/Users/overd/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/overd/.platformio/packages/framework-arduino-avr/variants/mega",
                 "C:/Users/overd/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
