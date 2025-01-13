@@ -16,7 +16,7 @@ sr2 {b, loop} <- | sr1 {a} <-
 
 main:
     ; Setear puertos de entrada A
-    LDI     R16,        0xFC
+    LDI     R16,        0xFC    ; 1111 1100
     OUT     DDRA,       R16
 
     ; Setear puertos de salida C
