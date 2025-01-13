@@ -5,7 +5,6 @@
 
 
 /*
-
 loop -> sr1 | sr2
 
 sr1 {a} -> input
@@ -13,7 +12,6 @@ sr1 {b, loop} <- | sr2 {a} <-
 
 sr2 {a} -> input
 sr2 {b, loop} <- | sr1 {a} <-
-
 */
 
 main:
