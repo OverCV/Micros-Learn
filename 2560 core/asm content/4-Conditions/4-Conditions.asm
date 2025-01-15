@@ -28,13 +28,13 @@ loop:
     ANDI    R17,    0x0F     
     ANDI    R18,    0x0F     
 
-    CPI     R19,    0       ; 0 = 0b0000 0001 = 0x01
+    CPI     R19,    0       ; 0 = 0b0000.0001 = 0x01
     BREQ    sum
 
-    CPI     R19,    1       ; 2 = 0b0000 0002 = 0x02
+    CPI     R19,    1       ; 2 = 0b0000.0002 = 0x02
     BREQ    subs
 
-    CPI     R19,    2       ; 3 = 0b0000 0003 = 0x03
+    CPI     R19,    2       ; 3 = 0b0000.0003 = 0x03
     BREQ    prod
 
     RJMP    half
