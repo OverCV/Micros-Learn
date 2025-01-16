@@ -4,7 +4,11 @@
     RJMP    main
 
 /**
-    Programa que recibe dos datos como entrada por el puerto A y el puerto B decide si se realiza una suma, resta, producto o división entre dos.
+    Definición: Programa que recibe dos datos como entrada por el puerto A y el puerto B decide si se realiza una suma, resta, producto o división entre dos.
+    00: Suma
+    01: Resta D2, D1
+    10: Producto
+    11: División entera por dos.
 */
 main:
     LDI     R16,    0x00
