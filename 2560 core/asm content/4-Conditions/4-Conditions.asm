@@ -3,8 +3,10 @@
     .org(0x0000)
     RJMP    main
 
+/**
+    Programa que recibe dos datos como entrada por el puerto A y el puerto B decide si se realiza una suma, resta, producto o división entre dos.
+*/
 main:
-    ; Código aquí 🤗
     LDI     R16,    0x00
     OUT     DDRB,   R16
     OUT     DDRA,   R16
@@ -26,7 +28,7 @@ loop:
     MOV     R18,    R17
     SWAP    R18
     ANDI    R17,    0x0F     
-    ANDI    R18,    0x0F     
+    ANDI    R18,    0x0F
 
     CPI     R19,    0       ; 0 = 0b0000.0001 = 0x01
     BREQ    sum
