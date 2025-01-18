@@ -18,7 +18,7 @@ main:
     ; Entrada: Puerto A (2 datos de 4 bits)
     LDI     R16,    0x00
     OUT     DDRA,   R16
-
+lang
 
     ; Salida: Puerto C
     LDI     R16,    0xFF    ; 0011 1111

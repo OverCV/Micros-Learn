@@ -146,3 +146,16 @@ tim_reti:
 table_name:
     ; Tabla de datos
     .dw         0x3F00, 0x18A0, 0x9D00, 0x9E11
+
+
+/*
+
+R16 <- 0xFF (+1 => 0x00)
+BIT: 8 7654 3210
+BIN:   1111 1111 -> 255
+BIN: 1 0000 0000 -> 256 = 2^8
+HEX:   F    F
+
+DEC: 255
+
+*/

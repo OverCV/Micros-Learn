@@ -38,7 +38,7 @@ loop:
     BREQ    sum
 
     CPI     R19,    1       ; 2 = 0b0000.0002 = 0x02
-    BREQ    subs
+    BREQ    diff
 
     CPI     R19,    2       ; 3 = 0b0000.0003 = 0x03
     BREQ    prod
@@ -49,7 +49,7 @@ sum:
     ADD     R17,    R18
     RJMP    loop
 
-subs:
+diff:
     SUB     R17,    R18
     RJMP    loop
 

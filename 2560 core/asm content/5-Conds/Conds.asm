@@ -102,3 +102,15 @@ L1:
     DEC     R25
     BRNE    L1
     RET
+
+/*
+delay:
+
+for i=255 to 0:
+    INST X
+    i--
+    for j=255 to 0:
+        INST Y
+        j--
+    j=255
+*/
