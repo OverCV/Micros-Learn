@@ -31,6 +31,7 @@ main:
 reset:
 
     ; Inicializar
+    LDI     R20,    1
 
 loop:
     IN      R17,    PINA    ; 1100 1111
@@ -48,7 +49,22 @@ loop:
     RJMP    ocho_ez
 
 cero:
-    RJMP    loop
+
+    ;   _000.0001
+    ;   _000.0010
+    ;   _000.0100
+    ;   _000.1000
+
+    ;   _10.0000
+    OUT     PORTC,  R20
+    RCALL   delay
+
+    LSL     R20
+
+    SBRS    R20,    6
+    RJMP    cero
+
+    RJMP    reset
 
 ocho_ez:
     ; Estado del led
@@ -57,6 +73,8 @@ ocho_ez:
 
     ; __GFE.DCBA
     ; __654.3210
+
+    ; 
 
     ; _____.___A
     ; __000.0001
@@ -82,18 +100,26 @@ ocho_ez:
     OUT     PORTC,  R20
     RCALL   delay
 
+    ; _____.D___
+    ; __000.1000
     LDI     R20,    0x08
     OUT     PORTC,  R20
     RCALL   delay
 
+    ; _____._C__
+    ; __000.0100
     LDI     R20,    0x04
     OUT     PORTC,  R20
     RCALL   delay
 
+    ; __G__.____
+    ; __100.0000
     LDI     R20,    0x40
     OUT     PORTC,  R20
     RCALL   delay
 
+    ; ___F_.____
+    ; __010.0000
     LDI     R20,    0x20
     OUT     PORTC,  R20
     RCALL   delay
