@@ -15,7 +15,7 @@
 .def CNT3 = R27
 
 main:
-    ; Definir entradas
+    ; Definir entradas (0)
     LDI     R16,    0xCF
     OUT     DDRA,   R16
 
