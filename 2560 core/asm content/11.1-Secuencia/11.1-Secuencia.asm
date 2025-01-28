@@ -3,7 +3,7 @@
     .org(0x0000)
     RJMP    main
 
-    .org(INT0addr)
+    .org(INT0addr)  ; 0x0002
     RJMP    isr_00     ; interruption service routine ;
 
 /*
@@ -52,10 +52,10 @@ loop:
     */
 
     ; si el bit 0 de `state` vale 0 incrementa
-    SBRS    state,  0
+    SBRS    state,  0   ; Skip if Bit Regisster Set (1)
     INC     seq
     ; si el bit 0 de `state` vale 1 decrementa
-    SBRC    state,  0
+    SBRC    state,  0   ; Skip if Bit Regisster Clear (0)
     DEC     seq
 
     RJMP    loop
