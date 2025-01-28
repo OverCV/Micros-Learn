@@ -8,7 +8,8 @@
 
 /*
 Definition: A program that shows an increasing or decreasing sequence whenever the user activates the INT0 interuption.
-The interupt works that in every the button is pushed we're generating a high edge.
+The interupt works that in every the button is pushed we're generating a level change.
+___|---|___
 */
 
 ; def for renamings ;
@@ -21,23 +22,19 @@ main:
     ; [0000.0001]
     LDI     R16,    1
     OUT     EIMSK,  R16
-
-    ; [00 00 00 11]
-    LDI     R16,    1
+    ; [00 00 00 00]
+    LDI     R16,    0
     STS     EICRA,  R16
-
+    ; Set External Interruptions
     SEI
-
     ; Show the output (sequence)
     LDI     R16,    0xFF
     OUT     DDRC,   R16
-
     ; delay settings
     LDI     R27,    41
     LDI     R28,    150
     LDI     R29,    125
     LDI     R16,    1
-
     ; display and vector state initialization
     LDI     seq,    1
     LDI     state,  0
@@ -53,15 +50,14 @@ loop:
     elif state[0] == 1:
         seq--
     */
-    
+
     ; si el bit 0 de `state` vale 0 incrementa
     SBRS    state,  0
     INC     seq
-
     ; si el bit 0 de `state` vale 1 decrementa
     SBRC    state,  0
     DEC     seq
-    
+
     RJMP    loop
 
 half_sec_delay:
