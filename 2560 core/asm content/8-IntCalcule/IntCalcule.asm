@@ -3,12 +3,10 @@
     .org(0x0000)
     RJMP    main
 
-    .org(0x0002)
-    ; .org(0x0006)
+    .org(INT0addr)
     RJMP    rsi_0
 
-    .org(0x0004)
-    ; .org(0x0008)
+    .org(INT1addr)
     RJMP    rsi_1
 
     ; Se realizará una calculadora cual operará entradas de datos de 04 bits, el Puerto A será el encargado de recibir los datos de entrada y el Puerto C será el encargado de mostrar la operación entre los datos en A como salida.
@@ -18,7 +16,6 @@ main:
     ; Entrada: Puerto A (2 datos de 4 bits)
     LDI     R16,    0x00
     OUT     DDRA,   R16
-lang
 
     ; Salida: Puerto C
     LDI     R16,    0xFF    ; 0011 1111
@@ -27,12 +24,15 @@ lang
     ; Habilitamos interrupciones globales
     SEI
 
-    ; Habilitar interrupciones (INT_0, INT_1)
-    LDI     R17,    0x33    ;   (0000.0011)
+    ; Habilitar interrupciones (INT_1, INT_0)
+    ; [X X X X .INT3 INT2 INT1 INT0]
+    ; [X X X X .   0    0    1    1] => HEX:03
+    LDI     R17,    0x03
     OUT     EIMSK,  R17
-    ; STS
 
     ; Configurar con flanco de subida (bits 0, 1 activos)
+    ; [INT3 INT2 INT1 INT0]
+    ; [  00   01.  10   11]
     LDI     R18,    0x01
     STS     EICRA,  R18
     LDI     R20,    0x00
@@ -46,7 +46,7 @@ loop:
     SWAP    R17             ; R17 <- xxxx yyyy
     ANDI    R17,    0x0F    ; R17 <- 0000 xxxx
     ANDI    R18,    0x0F    ; R18 <- 0000 yyyy
-
+    ; ! acá quedó
 
     CPI     R20,    0x00    ; (R17 == 0000)
     BREQ    addop
@@ -85,9 +85,10 @@ orop:
     RJMP    loop
 
 rsi_0:
+    ;  routine service interruption
     LDI     R19,    0x40
     EOR     R20,    R19
-    RETI
+    RETI ; Return Interruption
 
 rsi_1:
     LDI     R19,    0x80
