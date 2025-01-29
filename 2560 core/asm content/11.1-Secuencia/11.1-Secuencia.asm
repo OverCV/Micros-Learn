@@ -8,7 +8,7 @@
 
 /*
 Definition: A program that shows an increasing or decreasing sequence whenever the user activates the INT0 interuption.
-The interupt works that in every the button is pushed we're generating a level change.
+The interupt works that in every the button is pushed we're generating a level change..
 ___|---|___
 */
 
@@ -81,5 +81,4 @@ isr_00:
 Reader's excercise:
 You need to display in a 7 Segments your name in lowercase but if one user pushes a button that will activate the INT1, therefore, displaying your birthdate.
 Logically you display one digit/letter each second.
-
  */
