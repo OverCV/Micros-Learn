@@ -9,7 +9,7 @@
 /*
 Definition: A program that shows an increasing or decreasing sequence whenever the user activates the INT0 interuption.
 The interupt works that in every the button is pushed we're generating a level change..
-___|---|___
+___|---|___|---|___
 */
 
 ; def for renamings ;
