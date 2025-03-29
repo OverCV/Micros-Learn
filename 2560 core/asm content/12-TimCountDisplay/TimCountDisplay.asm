@@ -49,3 +49,5 @@ loop:
 table:
     ; Tabla de dígitos 0-9 en ánodo común
     .dw         0xF9C0, 0xB0A4, 0x9299, 0xF882, 0x9080
+
+    ; 1100.0000; 0xC0 11111001 0xF9

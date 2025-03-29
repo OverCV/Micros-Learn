@@ -13,6 +13,29 @@
 ; 8: 7F
 ; 9: 6F
 
+
+/*
+
+
+_GFEDCBA
+Número (0)
+_011.1111 -> Catodo común -> 0x3F
+_100.0000 -> Anodo común -> 0x40
+
+Número (1)
+_0000110 -> Cátodo común -> 0x06
+_1111001 -> Anodo común -> 0x79
+
+
+
+1000 06 3F 00 00 00 00 00 00 00
+1001 00 00 00 00 00 00 00 00 00
+1001 00 00 00 00 00 00 00 00 00
+
+*/
+
+/
+
 /* DISPLAY 14 SEGMENTS - COMMON CATODE */
 
 ;! LETTERS !;

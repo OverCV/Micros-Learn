@@ -25,7 +25,7 @@ main:
     SEI
 
     ; Habilitar interrupciones (INT_1, INT_0)
-    ; [X X X X .INT3 INT2 INT1 INT0]
+    ; [INT6 INT6 INT5 INT4 .INT3 INT2 INT1 INT0]
     ; [X X X X .   0    0    1    1] => HEX:03
     LDI     R17,    0x03
     OUT     EIMSK,  R17
@@ -94,3 +94,4 @@ rsi_1:
     LDI     R19,    0x80
     EOR     R20,    R19
     RETI
+    
