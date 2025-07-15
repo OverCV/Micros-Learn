@@ -13,10 +13,10 @@ private:
   void activateRelay(uint8_t pin);
 
 public:
-  Dispenser();  // Ya no necesitamos pasar los relays en el constructor
+  Dispenser();  // Ya no necesitamos pasar los relays en el constructor.
 
   void init();
-  void dispense(Product::ProductId id);  // Cambiamos a usar ProductId
+  void dispense(Product::ProductId id);  // Cambiamos a usar ProductId.
   bool isDispensing() const {
     return _dispensing;
   }
