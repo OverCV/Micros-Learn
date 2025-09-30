@@ -8,7 +8,7 @@ Para facilitar el aprendizaje se tiene una carpeta `assets/` con imágenes de lo
 
 ## Introducción a los microcontroladores :computer: :electric_plug: :bulb:
 
-Un microcontrolador es un circuito integrado programable, capaz de ejecutar las órdenes grabadas en su memoria. Está compuesto por una unidad central de procesamiento, memoria y periféricos de entrada/salida. Los microcontroladores son utilizados en sistemas embebidos, es decir, sistemas electrónicos que realizan una función específica y que no son programables por el usuario.
+Un microcontrolador es un circuito integrado programable capaz de ejecutar las órdenes grabadas en su memoria. Está compuesto por una unidad central de procesamiento, memoria y periféricos de entrada/salida. Los microcontroladores son utilizados en sistemas embebidos, es decir, sistemas electrónicos que realizan una función específica y que no son programables por el usuario.
 
 
 ### Instalación AVR Assembly :wrench: :hammer:
