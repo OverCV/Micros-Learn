@@ -6,7 +6,7 @@
 *.elf
 *.o
 
-# Ignore files even if they are not in the root directory
+# Ignore files, even if they are not in the root directory
 **/*.lss
 **/*.map
 **/*.obj
