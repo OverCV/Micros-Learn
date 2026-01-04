@@ -6,7 +6,7 @@
 MCU   = atmega2560
 F_CPU = 16000000UL
 BAUD  = 9600UL
-## Also try BAUD = 19200 or 38400 if you're feeling lucky.
+## Also try BAUD = 19200 or 38400, if you're feeling lucky.
 
 ## A directory for common include files.
 LIBDIR = 
