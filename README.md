@@ -2,9 +2,9 @@
 
 ## Descripción :pencil2: :books:
 
-Este repositorio contiene información sobre el aprendizaje adquirido en dos microcontroladores de la familia Atmel, el ATmega328P y **ATmega2560**. Principalmente se a utilizado para el período lectivo 2024A el ATMega2560, de forma que hay mejor código en `.asm` y `.cpp` para este microcontrolador así como sus simulaciones en Proteus (`.pdsprj`).
+Este repositorio contiene información sobre el aprendizaje adquirido en dos microcontroladores de la familia Atmel, el ATmega328P y **ATmega2560**. Principalmente se ha utilizado para el período lectivo 2024A el ATMega2560, de forma que hay mejor código en `.asm` y `.cpp` para este microcontrolador así como sus simulaciones en Proteus (`.pdsprj`).
 
-Para facilitar el aprendizaje se tiene una carpeta `assets/` con imágenes de los PIN-OUT de cada microcontrolador, así como su **set de instrucciones** para conocer los mnemónicos utilizados en según rango de memoria y registros, así como su **datasheet** para conocer características técnicas como particiones de memoria, registros, uso y configuración de interrupciones, temporizadores, etc.
+Para facilitar el aprendizaje se tiene una carpeta `assets/` con imágenes de los PIN-OUT de cada microcontrolador, así como su **set de instrucciones** para conocer los mnemónicos utilizados según rango de memoria y registros, así como su **datasheet** para conocer características técnicas como particiones de memoria, registros, uso y configuración de interrupciones, temporizadores, etc.
 
 ## Introducción a los microcontroladores :computer: :electric_plug: :bulb:
 
@@ -29,7 +29,7 @@ De esta forma programar en arduino **no** es únicamente programar en C, ni en C
 
 No sólo acá se explicará la instalación sino también el uso de este entorno pues puede causar problemas el no aplicar o conocer cómo hacer operaciones básicas.
 
-Instalación en ...
+Instalación en [sitio oficial](https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE).
 
 Es importante entonces saber que al crear un archivo `.ino` se requiere que la carpeta que lo contenga tenga el mismo nombre, si no, no compilará hasta que se haga.
 Para poder visualizar el directorio de nuestro archivo, pulsamos `[CTRL + Shift + E]` de forma que podemos visualizar todos los archivos e incluso la carpeta `build` de compilación.
