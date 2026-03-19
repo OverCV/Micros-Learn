@@ -14,7 +14,7 @@ Un microcontrolador es un circuito integrado programable capaz de ejecutar las Ã
 ### InstalaciÃ³n AVR Assembly :wrench: :hammer:
 
 AVR Support
-[CTRL + Shift + P] Change Language Mode -> AVR Assembler (avr)
+[CTRL + Shift + P] Change Language Mode >> AVR Assembler (avr)
 Mips assembler for formatting.
 En el archivo `2560 core\.assets\tools\iom2560.h` se encuentran las declaraciones de registros, direcciones de memoria, interrupciones, timers, etc...
 
